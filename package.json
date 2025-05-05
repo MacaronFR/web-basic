@@ -1,29 +1,32 @@
 {
   "name": "imacaron-basic",
-  "version": "0.1.1",
+  "version": "0.1.12",
   "description": "IMacaron Basics for React with Tailwind",
-  "files": ["/dist"],
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
-    }
-  },
+  "main": "index.js",
+  "files": [
+    "/"
+  ],
+  "types": "index.d.ts",
+  "type": "module",
   "scripts": {
-    "build": "tsc"
+    "build": "rm -rf dist && tsc && tailwindcss -i ./src/index.css -o ./dist/index.css"
   },
   "author": "Macaron",
   "license": "ISC",
   "devDependencies": {
+    "@tailwindcss/cli": "^4.1.5",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "globals": "^16.0.0",
-    "typescript": "~5.8.3"
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.1.5",
+    "typescript": "~5.8.3",
+    "vite": "^6.3.5",
+    "vite-plugin-dts": "^4.5.3"
   },
   "peerDependencies": {
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
     "clsx": "^2.1.1",
-    "tailwindcss": "^4.1.5"
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
   }
 }
