@@ -6,7 +6,7 @@ interface HeaderCellProps {
 
 export default function HeaderCell(props: HeaderCellProps) {
 	return(
-		<div className={"bg-slate-950 hover:bg-slate-900 first:rounded-tl-lg last:rounded-tr-lg px-4 py-1 border-b border-amber-100"}>
+		<div className={"bg-table-header hover:bg-table-header-hover first:rounded-tl-lg last:rounded-tr-lg px-4 py-1 border-b border-table-border"}>
 			{ props.children }
 		</div>
 	);

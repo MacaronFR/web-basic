@@ -23,7 +23,7 @@ export default function Table<T extends StringIndexedObject>(props: TableProps<T
 		return size.map(v => typeof v === "number" ? v + "px" : v ?? "1fr");
 	}, [props.header]);
 	return (
-		<div className={"grid border border-amber-100 rounded-lg"} style={{gridTemplateColumns: size.join(" ")}}>
+		<div className={"grid border border-table-border rounded-lg"} style={{gridTemplateColumns: size.join(" ")}}>
 			<div className={"contents"}>
 				{props.header.map((header, index) => <HeaderCell key={index}>{header.name ?? header.id}</HeaderCell>)}
 			</div>

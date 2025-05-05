@@ -1,6 +1,6 @@
 {
   "name": "imacaron-basic",
-  "version": "0.1.12",
+  "version": "0.2.2",
   "description": "IMacaron Basics for React with Tailwind",
   "main": "index.js",
   "files": [
