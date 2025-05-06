@@ -5,6 +5,7 @@ import HeaderCell from "./HeaderCell";
 import Cell from "./Cell";
 import Footer from "./Footer";
 import React from "react";
+import {DefaultLoading} from "./DefaultLoading";
 
 interface TableProps<T extends StringIndexedObject> {
 	header: Header[],
@@ -15,6 +16,9 @@ interface TableProps<T extends StringIndexedObject> {
 	pageSize?: number,
 	pageSizeOptions?: number[],
 	setPageSize?: (pageSize: number) => void,
+	loading?: boolean,
+	loadingElement?: React.ReactNode,
+	error?: string
 }
 
 export default function Table<T extends StringIndexedObject>(props: TableProps<T>) {
@@ -27,7 +31,7 @@ export default function Table<T extends StringIndexedObject>(props: TableProps<T
 			<div className={"contents"}>
 				{props.header.map((header, index) => <HeaderCell key={index}>{header.name ?? header.id}</HeaderCell>)}
 			</div>
-			{ props.data.map((row, index) => {
+			{props.error !== undefined && <div className={"col-span-full h-24 flex items-center justify-center"}>{props.error}</div> || props.loading && (props.loadingElement ?? <DefaultLoading/>) || props.data.map((row, index) => {
 				return (
 					<div className={"contents group"} key={index}>
 						{props.header.map((header, index) => <Cell key={index} className={header.columnClassName}>{row[header.id]}</Cell>)}

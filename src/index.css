@@ -6,4 +6,5 @@
 	--color-table-even: var(--color-slate-800);
 	--color-table-odd: var(--color-slate-900);
 	--color-table-border: var(--color-amber-100);
+	--color-table-loading: var(--color-amber-100);
 }
