@@ -5,6 +5,12 @@ import ButtonDanger from "../../src/Components/Button/ButtonDanger.tsx";
 import Table from "../../src/Components/Table/Table.tsx";
 import useTable from "../../src/Components/Table/useTable.ts";
 import Card from "../../src/Components/Card/Card.tsx";
+import Header from "../../src/Components/Header/Header.tsx";
+import {FiGithub} from "react-icons/fi";
+import {SiNpm} from "react-icons/si";
+import SideBar from "../../src/Components/SideBar/SideBar.tsx";
+import useSideBar from "../../src/Components/SideBar/useSideBar.ts";
+import SideBarItem from "../../src/Components/SideBar/SideBarItem.tsx";
 
 export default function App() {
 	const table = useTable(
@@ -30,43 +36,59 @@ export default function App() {
 			sortable: true
 		}
 	);
+	const menu = useSideBar();
 	return (
-		<div className={"w-screen h-screen bg-background text-text px-2 flex flex-col gap-4"}>
-			<Table {...table}/>
-			<Card className={"flex gap-4"} title={"Buttons"}>
-				<div className={"flex flex-col items-center gap-2"}>
-					<ButtonPrimary>
-						Primary
-					</ButtonPrimary>
-					<ButtonPrimary loading>
-						Primary
-					</ButtonPrimary>
+		<div className={"w-screen h-screen overflow-hidden bg-background text-text flex flex-col"}>
+			<Header title={"IMacaron - Web Basics"} displayMenu={menu.setDisplay}>
+				<a href={"https://www.npmjs.com/package/imacaron-basic"} target={"_blank"} className={"hover:scale-105 sm:text-2xl"}>
+					<SiNpm/>
+				</a>
+				<a href={"https://github.com/MacaronFR/web-basic"} target={"_blank"} className={"hover:scale-105 sm:text-2xl"}>
+					<FiGithub/>
+				</a>
+			</Header>
+			<div className={"flex grow"}>
+				<SideBar isVisible={menu.display} setVisible={menu.setDisplay}>
+					<SideBarItem active>PlaceHolder</SideBarItem>
+				</SideBar>
+				<div className={"px-2 flex flex-col gap-4 grow mt-2 max-w-full"}>
+					<Table {...table}/>
+					<Card className={"flex flex-col sm:flex-row gap-4 flex-wrap"} title={"Buttons"}>
+						<div className={"flex flex-col items-center gap-2"}>
+							<ButtonPrimary>
+								Primary
+							</ButtonPrimary>
+							<ButtonPrimary loading>
+								Primary
+							</ButtonPrimary>
+						</div>
+						<div className={"flex flex-col items-center gap-2"}>
+							<ButtonSecondary>
+								Secondary
+							</ButtonSecondary>
+							<ButtonSecondary loading>
+								Secondary
+							</ButtonSecondary>
+						</div>
+						<div className={"flex flex-col items-center gap-2"}>
+							<ButtonCancel>
+								Cancel
+							</ButtonCancel>
+							<ButtonCancel loading>
+								Cancel
+							</ButtonCancel>
+						</div>
+						<div className={"flex flex-col items-center gap-2"}>
+							<ButtonDanger>
+								Danger
+							</ButtonDanger>
+							<ButtonDanger loading>
+								Danger
+							</ButtonDanger>
+						</div>
+					</Card>
 				</div>
-				<div className={"flex flex-col items-center gap-2"}>
-					<ButtonSecondary>
-						Secondary
-					</ButtonSecondary>
-					<ButtonSecondary loading>
-						Secondary
-					</ButtonSecondary>
-				</div>
-				<div className={"flex flex-col items-center gap-2"}>
-					<ButtonCancel>
-						Cancel
-					</ButtonCancel>
-					<ButtonCancel loading>
-						Cancel
-					</ButtonCancel>
-				</div>
-				<div className={"flex flex-col items-center gap-2"}>
-					<ButtonDanger>
-						Danger
-					</ButtonDanger>
-					<ButtonDanger loading>
-						Danger
-					</ButtonDanger>
-				</div>
-			</Card>
+			</div>
 		</div>
 	);
 }

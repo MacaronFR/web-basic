@@ -28,6 +28,16 @@
 	 ** Components
 	 **/
 
+	/* Header */
+	--color-header: var(--color-gray-950);
+
+	/* SideBar */
+	--color-sidebar: var(--color-gray-950);
+	--color-sidebar-fade: --alpha(var(--color-black) / 50%);
+
+	--color-sidebar-item-hover: var(--color-gray-900);
+	--color-sidebar-item-active: var(--color-gray-900);
+
 	/* Table */
 	--color-table-header: var( --color-neutral-900);
 	--color-table-header-hover: var(--color-neutral-800);
@@ -35,6 +45,7 @@
 	--color-table-odd: var(--color-zinc-900);
 	--color-table-border: var(--color-amber-100);
 	--color-table-loading: var(--color-amber-100);
+
 	/* Card */
 	--color-card: var(--color-zinc-800);
 	--color-card-border: var(--color-amber-100);
