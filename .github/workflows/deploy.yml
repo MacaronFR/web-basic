@@ -28,6 +28,6 @@ jobs:
           port: 10
           username: 'macaron'
           password: 'password'
-          localPath: './test/dist/'
+          localPath: './dist/'
           remotePath: '/var/www/web-basic/'
           privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
