@@ -91,6 +91,16 @@
 	--color-table-loading: var(--color-amber-100);
 
 	/* Card */
-	--color-card: var(--color-zinc-800);
+	--color-card: var(--color-stone-800);
 	--color-card-border: --alpha(var(--color-amber-100) / 0.25);
+
+	/* Input */
+	--color-input: var(--color-zinc-900);
+	--color-input-text: var(--color-stone-200);
+	--color-input-label: var(--color-stone-400);
+	--color-input-border: --alpha(var(--color-amber-100) / 0.35);
+	--color-input-text-disabled: var(--color-stone-400);
+	--color-input-label-disabled: var(--color-stone-600);
+	--color-input-border-disabled: --alpha(var(--color-amber-100) / 0.25);
+	--color-input-selected: var(--color-zinc-950);
 }

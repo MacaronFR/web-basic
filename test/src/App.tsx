@@ -11,6 +11,9 @@ import {SiNpm} from "react-icons/si";
 import SideBar from "../../src/Components/SideBar/SideBar.tsx";
 import useSideBar from "../../src/Components/SideBar/useSideBar.ts";
 import SideBarItem from "../../src/Components/SideBar/SideBarItem.tsx";
+import Input from "../../src/Components/Input/Input.tsx";
+import {useState} from "react";
+import CheckBox from "../../src/Components/Input/CheckBox.tsx";
 
 export default function App() {
 	const table = useTable(
@@ -37,6 +40,8 @@ export default function App() {
 		}
 	);
 	const menu = useSideBar();
+	const [value, setValue] = useState("");
+	const [checked, setChecked] = useState(false);
 	return (
 		<div className={"w-screen h-screen overflow-hidden bg-background text-text flex flex-col"}>
 			<Header title={"IMacaron - Web Basics"} displayMenu={menu.setDisplay}>
@@ -85,6 +90,17 @@ export default function App() {
 							<ButtonDanger loading>
 								Danger
 							</ButtonDanger>
+						</div>
+					</Card>
+					<Card className={"flex flex-col gap-2"} title={"Inputs"}>
+						<div className={"flex flex-col xs:flex-row gap-2 items-center"}>
+							<Input label={"Input with label"} value={value} onChange={setValue}/>
+							<Input value={value} onChange={setValue}/>
+							<Input label={"Input disabled"} value={value} onChange={setValue} disabled/>
+						</div>
+						<div className={"flex flex-col xs:flex-row gap-2 items-center"}>
+							<div className={"flex gap-2"}>Checkbox<CheckBox checked={checked} onChange={setChecked}/></div>
+							<div className={"flex gap-2"}>Checkbox disabled<CheckBox checked={checked} onChange={setChecked} disabled/></div>
 						</div>
 					</Card>
 				</div>
