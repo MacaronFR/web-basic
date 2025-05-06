@@ -1,8 +1,9 @@
 {
   "name": "imacaron-basic",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "repository": "MacaronFR/web-basic",
-  "description": "IMacaron Basics for React with Tailwind",
+  "homepage": "https://web-basic.imacaron.fr",
+  "description": "IMacaron Web Basics for React with Tailwind",
   "main": "dist/index.js",
   "files": [
     "/dist",
