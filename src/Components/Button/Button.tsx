@@ -12,7 +12,7 @@ export interface ButtonProps {
 export default function Button(props: ButtonProps) {
 	return (
 		<button
-			className={clsx("min-w-16 py-2 px-4 border-2 rounded-lg cursor-pointer hover:scale-105 transition disabled:cursor-default disabled:scale-100 flex items-center bg-transparent select-none", props.className)}
+			className={clsx("min-w-16 py-1 px-2 border rounded-md cursor-pointer hover:scale-105 transition disabled:cursor-default disabled:scale-100 flex items-center bg-transparent select-none", props.className)}
 			onClick={props.onClick}
 			disabled={props.disabled || props.loading}
 		>

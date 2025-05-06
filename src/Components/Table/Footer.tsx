@@ -14,7 +14,7 @@ export default function Footer(props: FooterProps) {
 		return null;
 	}
 	return (
-		<div className={"border-t border-table-border col-span-full flex justify-between items-center px-4"}>
+		<div className={"border-t border-table-border bg-table-footer rounded-b-md col-span-full flex justify-between items-center px-4"}>
 			<div/>
 			<div className={"flex gap-4 items-center"}>
 				{props.goToPage !== undefined &&

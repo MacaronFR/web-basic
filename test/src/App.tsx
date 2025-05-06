@@ -51,9 +51,9 @@ export default function App() {
 				<SideBar isVisible={menu.display} setVisible={menu.setDisplay}>
 					<SideBarItem active>PlaceHolder</SideBarItem>
 				</SideBar>
-				<div className={"px-2 flex flex-col gap-4 grow mt-2 max-w-full"}>
+				<div className={"px-2 flex flex-col gap-2 grow mt-2 max-w-full"}>
 					<Table {...table}/>
-					<Card className={"flex flex-col sm:flex-row gap-4 flex-wrap"} title={"Buttons"}>
+					<Card className={"flex flex-col xs:flex-row gap-4 flex-wrap"} title={"Buttons"}>
 						<div className={"flex flex-col items-center gap-2"}>
 							<ButtonPrimary>
 								Primary
