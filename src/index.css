@@ -1,6 +1,11 @@
 @import "tailwindcss";
 
 @theme {
+	/**
+	 ** Components
+	 **/
+
+	/* Table */
 	--color-table-header: var( --color-slate-950);
 	--color-table-header-hover: var(--color-slate-900);
 	--color-table-even: var(--color-slate-800);

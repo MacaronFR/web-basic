@@ -4,6 +4,31 @@ Basics for development in React with Tailwind
 
 Made by Macaron
 
+## Installation
+
+`npm install imacaron-basic`
+
+You will need to import the CSS to use this lib.
+In your `index.css` add the import on the first line (every import of css before may be overridden by this lib otherwise).  
+To customize the theme, you will use the `@layer theme` directive.   
+```css
+@import "imacaron-basic/index.css";
+/*Other imports*/
+
+@layer theme {
+    :root {
+        /* Custom variable to change the theme */
+    }
+}
+
+/*If you use tailwind you can use the @theme directive*/
+@theme {
+    /* Custom variable to change the theme*/
+}
+```
+
+
+
 ## Components
 
 ### Table
