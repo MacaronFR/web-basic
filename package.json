@@ -1,6 +1,6 @@
 {
   "name": "imacaron-basic",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "repository": "MacaronFR/web-basic",
   "description": "IMacaron Basics for React with Tailwind",
   "main": "dist/index.js",
