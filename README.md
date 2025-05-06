@@ -1,4 +1,4 @@
-# IMacaron Basic
+# IMacaron Web Basic
 
 Basics for development in React with Tailwind
 
@@ -27,6 +27,28 @@ To customize the theme, you will use the `@layer theme` directive.
 }
 ```
 
+## Customization
+
+### Colors
+
+These colors are the base of the lib and are used across many components.
+
+| Name               | Variable                   | Default   |
+|--------------------|----------------------------|-----------|
+| Primary            | --color-primary            | #FFB900FF |
+| On-Primary         | --color-on-primary         | #FEF3C6FF |
+| Primary Disabled   | --color-primary-disabled   | #FE9A00FF |
+| Secondary          | --color-secondary          | #00BCFFFF |
+| On Secondary       | --color-on-secondary       | #F0F9FFFF |
+| Secondary Disabled | --color-secondary-disabled | #0084D1FF |
+| Cancel             | --color-cancel             | #99A1AFFF |
+| On Cancel          | --color-on-cancel          | #1E2939FF |
+| Cancel Disabled    | --color-cancel-disabled    | #6A7282FF |
+| Danger             | --color-danger             | #FF2056FF |
+| On Danger          | --color-on-danger          | #FFE4E6FF |
+| Danger Disabled    | --color-danger-disabled    | #FF637EFF |
+| Background         | --color-background         | #1C1917FF |
+| Text               | --color-text               | #FFFBEBFF |
 
 
 ## Components
@@ -38,11 +60,11 @@ The component has a default theme but can be set via CSS variables.
 
 | part         | variable                   | default   |
 |--------------|----------------------------|-----------|
+| header       | --color-table-header       | #171717FF |
+| header:hover | --color-table-header-hover | #262626FF |
+| row:even     | --color-table-even         | #27272AFF |
+| row:odd      | --color-table-odd          | #18181BFF |
 | border       | --color-table-border       | #FEF3C6FF |
-| header       | --color-table-header       | #020618FF |
-| header:hover | --color-table-header-hover | #020618FF |
-| row:even     | --color-table-even         | #1D293DFF |
-| row:odd      | --color-table-odd          | #0F172BFF |
 | loading      | --color-table-loading      | #FEF3C6FF |
 
 To use the table component, you may use the `useTable` hook.  
@@ -64,6 +86,15 @@ interface useTableOptions {
 const table = useTable(headers, dataToDisplay, /*options if needed*/);
 <Table {...table}/>
 ```
+### Card
+The card is a container with a border. You can also add a title.  
+The component has a default theme, but you can customize it
+
+| Part       | Variable            | Default   |
+|------------|---------------------|-----------|
+| Background | --color-card        | #27272AFF |
+| Border     | --color-card-border | #FEF3C6FF |
+
 
 ## Utility
 

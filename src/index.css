@@ -2,14 +2,40 @@
 
 @theme {
 	/**
+	 ** General
+	 **/
+	--color-primary: var(--color-amber-400);
+	--color-on-primary: var(--color-amber-100);
+	--color-primary-disabled: var(--color-amber-500);
+
+	--color-secondary: var(--color-sky-400);
+	--color-on-secondary: var(--color-sky-50);
+	--color-secondary-disabled: var(--color-sky-600);
+
+	--color-cancel: var(--color-gray-400);
+	--color-on-cancel: var(--color-gray-800);
+	--color-cancel-disabled: var(--color-gray-500);
+
+	--color-danger: var(--color-rose-500);
+	--color-on-danger: var(--color-rose-100);
+	--color-danger-disabled: var(--color-rose-400);
+
+	--color-background: var(--color-stone-900);
+
+	--color-text: var(--color-amber-50);
+
+	/**
 	 ** Components
 	 **/
 
 	/* Table */
-	--color-table-header: var( --color-slate-950);
-	--color-table-header-hover: var(--color-slate-900);
-	--color-table-even: var(--color-slate-800);
-	--color-table-odd: var(--color-slate-900);
+	--color-table-header: var( --color-neutral-900);
+	--color-table-header-hover: var(--color-neutral-800);
+	--color-table-even: var(--color-zinc-800);
+	--color-table-odd: var(--color-zinc-900);
 	--color-table-border: var(--color-amber-100);
 	--color-table-loading: var(--color-amber-100);
+	/* Card */
+	--color-card: var(--color-zinc-800);
+	--color-card-border: var(--color-amber-100);
 }
