@@ -1,5 +1,64 @@
 # IMacaron Basic
 
-Basics of development for React with Tailwind
+Basics for development in React with Tailwind
 
 Made by Macaron
+
+## Components
+
+### Table
+
+The table component is used to display data in a table. This component is pageable, sortable, and the page size is also customizable.  
+The component has a default theme but can be set via CSS variables.
+
+| part         | variable                   | default   |
+|--------------|----------------------------|-----------|
+| border       | --color-table-border       | #FEF3C6FF |
+| header       | --color-table-header       | #020618FF |
+| header:hover | --color-table-header-hover | #020618FF |
+| row:even     | --color-table-even         | #1D293DFF |
+| row:odd      | --color-table-odd          | #0F172BFF |
+| loading      | --color-table-loading      | #FEF3C6FF |
+
+To use the table component, you may use the `useTable` hook.  
+```typescript jsx
+useTable<T extends StringIndexedObject>(headers: Header[], data: T[], options: useTableOptions): TableProps
+
+interface useTableOptions {
+	pageSize?: number, //The default page size
+	pageSizeOptions?: number[], //The options of page size
+	maxPage?: number, //The max of page (can be state)
+	pageable?: boolean, //If the pagination system is active
+	sortable?: boolean, //If the table is sortable
+	loading?: boolean, //Loading state (can be state)
+	loadingElement?: React.ReactNode, //An element to customize loading
+	error?: string, //Error to display (can be state)
+}
+
+//Usage
+const table = useTable(headers, dataToDisplay, /*options if needed*/);
+<Table {...table}/>
+```
+
+## Utility
+
+### Array.prototype.extendTo
+
+This function allows you to expand an array to the desired length by pushing the value you want or undefined
+
+```typescript
+const array = ["Test"];
+array.expandTo(8)
+console.log(array) // ["Test", undefined, undefined, undefined, undefined, undefined, undefined, undefined]
+
+const array2 = ["Test"];
+array.expandTo(4, "Fill")
+console.log(array) // ["Test", "Fill", "Fill", "Fill"]
+```
+
+## Types Alias
+
+| Type                | Alias for                               |
+|---------------------|-----------------------------------------|
+| StringIndexedObject | {[key: string]: string}                 |
+| SetState<T>         | React.Dispatch<React.SetStateAction<T>> |
