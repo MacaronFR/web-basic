@@ -1,21 +1,24 @@
 import {useMemo} from "react";
-import type {StringIndexedObject} from "../../utils.ts";
+import type {SetState, StringIndexedObject} from "../../utils.ts";
 import type Header from "./Header.ts";
 import HeaderCell from "./HeaderCell";
 import Cell from "./Cell";
 import Footer from "./Footer";
 import React from "react";
 import {DefaultLoading} from "./DefaultLoading";
+import {Sort, SortOrder} from "./Sort";
 
-interface TableProps<T extends StringIndexedObject> {
+export interface TableProps<T extends StringIndexedObject> {
 	header: Header[],
 	data: T[],
 	page?: number,
 	maxPage?: number,
-	goToPage?: (page: number) => void,
+	goToPage?: SetState<number>,
 	pageSize?: number,
 	pageSizeOptions?: number[],
-	setPageSize?: (pageSize: number) => void,
+	setPageSize?: SetState<number>,
+	sort?: Sort[]
+	setSort?: SetState<Sort[]>,
 	loading?: boolean,
 	loadingElement?: React.ReactNode,
 	error?: string
@@ -29,7 +32,22 @@ export default function Table<T extends StringIndexedObject>(props: TableProps<T
 	return (
 		<div className={"grid border border-table-border rounded-lg"} style={{gridTemplateColumns: size.join(" ")}}>
 			<div className={"contents"}>
-				{props.header.map((header, index) => <HeaderCell key={index}>{header.name ?? header.id}</HeaderCell>)}
+				{props.header.map((header, index) => {
+					const sortOrder = header.sortable !== false ? props.sort?.find(v => v.id === header.id)?.order ?? SortOrder.None : SortOrder.None;
+					const setSort = props.setSort && ((sort: SortOrder) => {
+						if(props.setSort === undefined) return;
+						props.setSort(prev => {
+							const index = prev.findIndex(v => v.id === header.id);
+							if(index !== -1) {
+								prev[index].order = sort;
+							} else {
+								prev.push({id: header.id, order: sort});
+							}
+							return [...prev];
+						})
+					});
+					return <HeaderCell key={index} sortable={header.sortable ?? true} sort={sortOrder} setSort={setSort}>{header.name ?? header.id}</HeaderCell>
+				})}
 			</div>
 			{props.error !== undefined && <div className={"col-span-full h-24 flex items-center justify-center"}>{props.error}</div> || props.loading && (props.loadingElement ?? <DefaultLoading/>) || props.data.map((row, index) => {
 				return (
