@@ -16,6 +16,7 @@ import {useState} from "react";
 import CheckBox from "../../src/Components/Input/CheckBox.tsx";
 import Select from "../../src/Components/Input/Select.tsx";
 import {SelectValue} from "../../src";
+import logo from  "./logo.svg";
 
 export default function App() {
 	const table = useTable(
@@ -47,11 +48,11 @@ export default function App() {
 	const [select, setSelect] = useState<SelectValue>();
 	return (
 		<div className={"w-screen h-screen overflow-hidden bg-background text-text flex flex-col"}>
-			<Header title={"IMacaron - Web Basics"} displayMenu={menu.setDisplay}>
-				<a href={"https://www.npmjs.com/package/imacaron-basic"} target={"_blank"} className={"hover:scale-105 sm:text-2xl"}>
+			<Header title={<><img alt={"Logo"} className={""} src={logo}/><p className={"hidden xs:block text-amber-200"}>IMacaron - Web Basic</p></>} displayMenu={menu.setDisplay}>
+				<a href={"https://www.npmjs.com/package/imacaron-basic"} target={"_blank"} className={"hover:scale-105 text-2xl"}>
 					<SiNpm/>
 				</a>
-				<a href={"https://github.com/MacaronFR/web-basic"} target={"_blank"} className={"hover:scale-105 sm:text-2xl"}>
+				<a href={"https://github.com/MacaronFR/web-basic"} target={"_blank"} className={"hover:scale-105 text-2xl"}>
 					<FiGithub/>
 				</a>
 			</Header>
