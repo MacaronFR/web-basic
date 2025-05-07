@@ -2,14 +2,9 @@ import clsx from "clsx";
 import React, {useEffect, useMemo, useRef, useState} from "react";
 import {FiChevronDown} from "react-icons/fi";
 import {SelectValue, SetState} from "../../utils";
+import {Option} from "./Option";
 
 const lineSize = 30;
-
-interface Option {
-	value: SelectValue
-	label: string,
-	disabled?: boolean
-}
 
 interface SelectProps {
 	options: Option[],
@@ -125,7 +120,7 @@ export default function Select(props: SelectProps) {
 					<div
 						key={i}
 						className={clsx("px-2 py-1 hover:bg-input-select-options-hover cursor-pointer last:rounded-b-md", props.value === option.value && "bg-input-selected", currentIndex === i && "!bg-input-select-options-hover", option.disabled === true && "cursor-not-allowed text-input-text-disabled")}
-						onClick={(e) => {
+						onClick={() => {
 							if(option.disabled !== true){
 								props.setValue(option.value)
 								setOpen(false);
