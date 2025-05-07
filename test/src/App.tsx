@@ -14,6 +14,8 @@ import SideBarItem from "../../src/Components/SideBar/SideBarItem.tsx";
 import Input from "../../src/Components/Input/Input.tsx";
 import {useState} from "react";
 import CheckBox from "../../src/Components/Input/CheckBox.tsx";
+import Select from "../../src/Components/Input/Select.tsx";
+import {SelectValue} from "../../src";
 
 export default function App() {
 	const table = useTable(
@@ -42,6 +44,7 @@ export default function App() {
 	const menu = useSideBar();
 	const [value, setValue] = useState("");
 	const [checked, setChecked] = useState(false);
+	const [select, setSelect] = useState<SelectValue>();
 	return (
 		<div className={"w-screen h-screen overflow-hidden bg-background text-text flex flex-col"}>
 			<Header title={"IMacaron - Web Basics"} displayMenu={menu.setDisplay}>
@@ -101,6 +104,10 @@ export default function App() {
 						<div className={"flex flex-col xs:flex-row gap-2 items-center"}>
 							<div className={"flex gap-2"}>Checkbox<CheckBox checked={checked} onChange={setChecked}/></div>
 							<div className={"flex gap-2"}>Checkbox disabled<CheckBox checked={checked} onChange={setChecked} disabled/></div>
+						</div>
+						<div className={"flex flex-col xs:flex-row gap-2 items-center"}>
+							<Select options={[{label: "Test", value: "Bonjour", disabled: true}, {label: "Test2", value: "Hello", disabled: false}, {label: "Test3", value: "Guten Tag"}, {label: "Test4", value: "Hola"}]} value={select} setValue={setSelect} defaultValue={"Bonjour"}/>
+							<Select options={[{label: "Test", value: "Bonjour", disabled: true}, {label: "Test2", value: "Hello", disabled: false}, {label: "Test3", value: "Guten Tag"}, {label: "Test4", value: "Hola"}]} value={select} setValue={setSelect} defaultValue={"Bonjour"} disabled={true}/>
 						</div>
 					</Card>
 				</div>

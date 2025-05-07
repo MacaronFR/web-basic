@@ -15,3 +15,5 @@ Array.prototype.extendTo = function<T>(length: number, value?: T): T[] {
 export type StringIndexedObject = {[key: string]: string};
 
 export type SetState<T> = React.Dispatch<React.SetStateAction<T>>;
+
+export type SelectValue = string | number | readonly string[] | undefined;
