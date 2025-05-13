@@ -22,7 +22,7 @@ export default function HeaderCell(props: HeaderCellProps) {
 		}
 	}, [props.sortable, props.sort, props.setSort]);
 	return(
-		<div onClick={() => toggleSort()} className={clsx("select-none bg-table-header hover:bg-table-header-hover first:rounded-tl-md last:rounded-tr-md px-2 border-b border-table-border flex justify-between items-center", props.sortable && props.setSort && "cursor-pointer")}>
+		<div onClick={() => toggleSort()} className={clsx("wb:select-none wb:bg-table-header wb:hover:bg-table-header-hover wb:first:rounded-tl-md wb:last:rounded-tr-md wb:px-2 wb:border-b wb:border-table-border wb:flex wb:justify-between wb:items-center", props.sortable && props.setSort && "cursor-pointer")}>
 			<div className={"text-xl text-nowrap py-1"}>{ props.children }</div>
 			<div>
 				{props.sortable && props.sort === SortOrder.Asc && <span className={"text-2xl"}>&#8595;</span>}

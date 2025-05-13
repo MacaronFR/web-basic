@@ -4,6 +4,6 @@ import {clsx} from "clsx";
 
 export default function ButtonPrimary(props: ButtonProps) {
 	return (
-		<Button {...props} className={clsx("border-primary text-primary active:bg-primary active:text-on-primary disabled:border-primary-disabled disabled:text-primary-disabled disabled:active:bg-transparent", props.className)}/>
+		<Button {...props} className={clsx("wb:border-primary wb:text-primary wb:active:bg-primary wb:active:text-on-primary wb:disabled:border-primary-disabled wb:disabled:text-primary-disabled wb:disabled:active:bg-transparent", props.className)}/>
 	)
 }

@@ -14,13 +14,13 @@ export default function Footer(props: FooterProps) {
 		return null;
 	}
 	return (
-		<div className={"border-t border-table-border bg-table-footer rounded-b-md col-span-full flex justify-between items-center px-4"}>
+		<div className={"wb:border-t wb:border-table-border wb:bg-table-footer wb:rounded-b-md wb:col-span-full wb:flex wb:justify-between wb:items-center wb:px-4"}>
 			<div/>
-			<div className={"flex gap-4 items-center"}>
+			<div className={"wb:flex wb:gap-4 wb:items-center"}>
 				{props.goToPage !== undefined &&
 					<button
 						disabled={props.page <= 0}
-						className={"text-2xl cursor-pointer disabled:cursor-not-allowed"}
+						className={"wb:text-2xl wb:cursor-pointer wb:disabled:cursor-not-allowed"}
 						onClick={() => {
 							if(props.page !== undefined && props.goToPage !== undefined && props.page > 0)
 								props.goToPage(props.page - 1);
@@ -33,7 +33,7 @@ export default function Footer(props: FooterProps) {
 				{props.goToPage !== undefined &&
                     <button
                         disabled={props.maxPage !== undefined && props.page >= props.maxPage - 1}
-                        className={"text-2xl cursor-pointer disabled:cursor-not-allowed"}
+                        className={"wb:text-2xl wb:cursor-pointer wb:disabled:cursor-not-allowed"}
                         onClick={() => {
 							if(props.page !== undefined && props.goToPage !== undefined && (props.maxPage === undefined || props.page < props.maxPage - 1))
 								props.goToPage(props.page + 1);

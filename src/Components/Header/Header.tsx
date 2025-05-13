@@ -10,11 +10,11 @@ interface HeaderProps {
 
 export default function Header(props: HeaderProps) {
 	return (
-		<div className={"bg-header h-12 flex items-center gap-2 px-2"}>
-			{ props.displayMenu && <button onClick={() => props.displayMenu && props.displayMenu(prev => !prev)} className={"block md:hidden text-2xl cursor-pointer"}><FiMenu/></button> }
-			<h1 className={"text-2xl flex gap-2 items-center"}>{props.title}</h1>
-			<div className={"grow"}/>
-			<div className={"flex gap-4"}>
+		<div className={"wb:bg-header wb:h-12 wb:flex wb:items-center wb:gap-2 wb:px-2"}>
+			{ props.displayMenu && <button onClick={() => props.displayMenu && props.displayMenu(prev => !prev)} className={"wb:block wb:md:hidden wb:text-2xl wb:cursor-pointer"}><FiMenu/></button> }
+			<h1 className={"wb:text-2xl wb:flex wb:gap-2 wb:items-center"}>{props.title}</h1>
+			<div className={"wb:grow"}/>
+			<div className={"wb:flex wb:gap-4"}>
 				{props.children}
 			</div>
 		</div>
