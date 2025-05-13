@@ -74,7 +74,7 @@ export default function App() {
 								Primary
 							</ButtonPrimary>
 						</div>
-						<div className={"flex flex-col items-center gap-2"}>
+						<div className={"wb:flex wb:flex-col wb:items-center wb:gap-2"}>
 							<ButtonSecondary>
 								Secondary
 							</ButtonSecondary>
@@ -82,7 +82,7 @@ export default function App() {
 								Secondary
 							</ButtonSecondary>
 						</div>
-						<div className={"flex flex-col items-center gap-2"}>
+						<div className={"wb:flex wb:flex-col wb:items-center wb:gap-2"}>
 							<ButtonCancel>
 								Cancel
 							</ButtonCancel>
@@ -90,7 +90,7 @@ export default function App() {
 								Cancel
 							</ButtonCancel>
 						</div>
-						<div className={"flex flex-col items-center gap-2"}>
+						<div className={"wb:flex wb:flex-col wb:items-center wb:gap-2"}>
 							<ButtonDanger>
 								Danger
 							</ButtonDanger>
@@ -99,17 +99,17 @@ export default function App() {
 							</ButtonDanger>
 						</div>
 					</Card>
-					<Card className={"flex flex-col gap-2"} title={"Inputs"}>
-						<div className={"flex flex-col xs:flex-row gap-2 items-center"}>
+					<Card className={"wb:flex wb:flex-col wb:gap-2"} title={"Inputs"}>
+						<div className={"wb:flex wb:flex-col wb:xs:flex-row wb:gap-2 wb:items-center"}>
 							<Input label={"Input with label"} value={value} onChange={setValue}/>
 							<Input value={value} onChange={setValue}/>
 							<Input label={"Input disabled"} value={value} onChange={setValue} disabled/>
 						</div>
-						<div className={"flex flex-col xs:flex-row gap-2 items-center"}>
-							<div className={"flex gap-2"}>Checkbox<CheckBox checked={checked} onChange={setChecked}/></div>
-							<div className={"flex gap-2"}>Checkbox disabled<CheckBox checked={checked} onChange={setChecked} disabled/></div>
+						<div className={"wb:flex wb:flex-col wb:xs:flex-row wb:gap-2 wb:items-center"}>
+							<div className={"wb:flex wb:gap-2"}>Checkbox<CheckBox checked={checked} onChange={setChecked}/></div>
+							<div className={"wb:flex wb:gap-2"}>Checkbox disabled<CheckBox checked={checked} onChange={setChecked} disabled/></div>
 						</div>
-						<div className={"flex flex-col xs:flex-row gap-2 items-center"}>
+						<div className={"wb:flex wb:flex-col wb:xs:flex-row wb:gap-2 wb:items-center"}>
 							<Select options={[{label: "Test", value: "Bonjour", disabled: true}, {label: "Test2", value: "Hello", disabled: false}, {label: "Test3", value: "Guten Tag"}, {label: "Test4", value: "Hola"}]} value={select} setValue={setSelect} defaultValue={"Bonjour"}/>
 							<Select options={[{label: "Test", value: "Bonjour", disabled: true}, {label: "Test2", value: "Hello", disabled: false}, {label: "Test3", value: "Guten Tag"}, {label: "Test4", value: "Hola"}]} value={select} setValue={setSelect} defaultValue={"Bonjour"} disabled={true}/>
 						</div>

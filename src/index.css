@@ -45,67 +45,67 @@
 	/**
 	 ** General
 	 **/
-	--color-primary: var(--color-amber-400);
-	--color-on-primary: var(--color-amber-100);
-	--color-primary-disabled: var(--color-amber-500);
+	--color-primary: var(--wb-color-amber-400);
+	--color-on-primary: var(--wb-color-amber-100);
+	--color-primary-disabled: var(--wb-color-amber-500);
 
-	--color-secondary: var(--color-sky-400);
-	--color-on-secondary: var(--color-sky-50);
-	--color-secondary-disabled: var(--color-sky-600);
+	--color-secondary: var(--wb-color-sky-400);
+	--color-on-secondary: var(--wb-color-sky-50);
+	--color-secondary-disabled: var(--wb-color-sky-600);
 
-	--color-cancel: var(--color-gray-400);
-	--color-on-cancel: var(--color-gray-800);
-	--color-cancel-disabled: var(--color-gray-500);
+	--color-cancel: var(--wb-color-gray-400);
+	--color-on-cancel: var(--wb-color-gray-800);
+	--color-cancel-disabled: var(--wb-color-gray-500);
 
-	--color-danger: var(--color-rose-400);
-	--color-on-danger: var(--color-rose-100);
-	--color-danger-disabled: --alpha(var(--color-rose-500) / 0.75);
+	--color-danger: var(--wb-color-rose-400);
+	--color-on-danger: var(--wb-color-rose-100);
+	--color-danger-disabled: --alpha(var(--wb-color-rose-500) / 0.75);
 
-	--color-background: var(--color-stone-900);
-	--color-scrollbar-thumb: var(--color-stone-600);
+	--color-background: var(--wb-color-stone-900);
+	--color-scrollbar-thumb: var(--wb-color-stone-600);
 
-	--color-text: var(--color-amber-50);
+	--color-text: var(--wb-color-amber-50);
 
 	/**
 	 ** Components
 	 **/
 
 	/* Header */
-	--color-header: var(--color-gray-950);
+	--color-header: var(--wb-color-gray-950);
 
 	/* SideBar */
-	--color-sidebar: var(--color-gray-950);
-	--color-sidebar-fade: --alpha(var(--color-black) / 50%);
+	--color-sidebar: var(--wb-color-gray-950);
+	--color-sidebar-fade: --alpha(var(--wb-color-black) / 50%);
 
-	--color-sidebar-item-hover: var(--color-gray-900);
-	--color-sidebar-item-active: var(--color-gray-900);
+	--color-sidebar-item-hover: var(--wb-color-gray-900);
+	--color-sidebar-item-active: var(--wb-color-gray-900);
 
 	/* Table */
 	--color-table-header: var( --color-neutral-900);
-	--color-table-header-hover: var(--color-neutral-800);
-	--color-table-hover: var(--color-zinc-800);
-	--color-table-even: var(--color-zinc-900);
-	--color-table-odd: var(--color-zinc-950);
-	--color-table-footer: var(--color-neutral-900);
-	--color-table-border: --alpha(var(--color-amber-100) / 0.25);
-	--color-table-loading: var(--color-amber-100);
+	--color-table-header-hover: var(--wb-color-neutral-800);
+	--color-table-hover: var(--wb-color-zinc-800);
+	--color-table-even: var(--wb-color-zinc-900);
+	--color-table-odd: var(--wb-color-zinc-950);
+	--color-table-footer: var(--wb-color-neutral-900);
+	--color-table-border: --alpha(var(--wb-color-amber-100) / 0.25);
+	--color-table-loading: var(--wb-color-amber-100);
 
 	/* Card */
-	--color-card: var(--color-stone-800);
-	--color-card-border: --alpha(var(--color-amber-100) / 0.25);
+	--color-card: var(--wb-color-stone-800);
+	--color-card-border: --alpha(var(--wb-color-amber-100) / 0.25);
 
 	/* Input */
-	--color-input: var(--color-zinc-900);
-	--color-input-text: var(--color-stone-200);
-	--color-input-label: var(--color-stone-400);
-	--color-input-border: --alpha(var(--color-amber-100) / 0.35);
-	--color-input-focus: --alpha(var(--color-amber-100) / 0.5);
-	--color-input-text-disabled: var(--color-stone-400);
-	--color-input-label-disabled: var(--color-stone-600);
-	--color-input-border-disabled: --alpha(var(--color-amber-100) / 0.25);
-	--color-input-selected: var(--color-zinc-950);
-	--color-input-select-options-hover: var(--color-zinc-800);
+	--color-input: var(--wb-color-zinc-900);
+	--color-input-text: var(--wb-color-stone-200);
+	--color-input-label: var(--wb-color-stone-400);
+	--color-input-border: --alpha(var(--wb-color-amber-100) / 0.35);
+	--color-input-focus: --alpha(var(--wb-color-amber-100) / 0.5);
+	--color-input-text-disabled: var(--wb-color-stone-400);
+	--color-input-label-disabled: var(--wb-color-stone-600);
+	--color-input-border-disabled: --alpha(var(--wb-color-amber-100) / 0.25);
+	--color-input-selected: var(--wb-color-zinc-950);
+	--color-input-select-options-hover: var(--wb-color-zinc-800);
 
 	/* Modal */
-	--color-modal-screen: --alpha(var(--color-black) / 40%);
+	--color-modal-screen: --alpha(var(--wb-color-black) / 40%);
 }
