@@ -1,4 +1,3 @@
-import useApi from "./useApi";
-import APIProvider, { APIContextProps } from "./APIContext";
+import useApi, { api, apiConfig, APIConfig} from "./useApi";
 
-export { useApi, APIProvider, APIContextProps };
+export { useApi, api, apiConfig, APIConfig };
