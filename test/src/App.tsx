@@ -15,8 +15,9 @@ import Input from "../../src/Components/Input/Input.tsx";
 import {useState} from "react";
 import CheckBox from "../../src/Components/Input/CheckBox.tsx";
 import Select from "../../src/Components/Input/Select.tsx";
-import {SelectValue} from "../../src";
+import { Modal, useModal } from "../../src/Components/Modal"
 import logo from  "./logo.svg";
+import {SelectValue} from "../../src";
 
 export default function App() {
 	const table = useTable(
@@ -46,6 +47,7 @@ export default function App() {
 	const [value, setValue] = useState("");
 	const [checked, setChecked] = useState(false);
 	const [select, setSelect] = useState<SelectValue>();
+	const modal = useModal();
 	return (
 		<div className={"w-screen h-screen overflow-hidden bg-background text-text flex flex-col"}>
 			<Header title={<><img alt={"Logo"} className={""} src={logo}/><p className={"hidden xs:block text-amber-200"}>IMacaron - Web Basic</p></>} displayMenu={menu.setDisplay}>
@@ -58,7 +60,8 @@ export default function App() {
 			</Header>
 			<div className={"flex grow"}>
 				<SideBar isVisible={menu.display} setVisible={menu.setDisplay}>
-					<SideBarItem active>PlaceHolder</SideBarItem>
+					<SideBarItem active>Main</SideBarItem>
+					<SideBarItem onClick={() => modal.setDisplay(true)}>Modal</SideBarItem>
 				</SideBar>
 				<div className={"px-2 flex flex-col gap-2 grow mt-2 max-w-full"}>
 					<Table {...table}/>
@@ -113,6 +116,9 @@ export default function App() {
 					</Card>
 				</div>
 			</div>
+			<Modal {...modal} title={"Modal"}>
+				Bonjour
+			</Modal>
 		</div>
 	);
 }
