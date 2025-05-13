@@ -13,7 +13,7 @@ interface ModalProps {
 
 export default function Modal(props: ModalProps) {
 	return (
-		<div className={clsx("fixed h-screen w-screen bg-modal-screen flex justify-center items-center z-20", props.display || "hidden")} onClick={e => {
+		<div className={clsx("fixed top-0 left-0 h-screen w-screen bg-modal-screen flex justify-center items-center z-20", props.display || "hidden")} onClick={e => {
 			if(e.currentTarget === e.target) {
 				props.setDisplay(false)
 			}
