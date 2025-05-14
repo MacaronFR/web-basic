@@ -59,7 +59,10 @@ export default function useApi<T>(url: string, deps: any[], options?: apiOptions
 	const [loading, setLoading] = useState(false);
 	const depsString = useMemo(() => {
 		return JSON.stringify(deps);
-	}, [deps])
+	}, [deps]);
+	const optionsString = useMemo(() => {
+		return JSON.stringify(options);
+	}, [options]);
 	useEffect(() => {
 		setLoading(true);
 		api<T>(url, options).then(
@@ -72,7 +75,7 @@ export default function useApi<T>(url: string, deps: any[], options?: apiOptions
 				setLoading(false);
 			}
 		)
-	}, [url, options, depsString]);
+	}, [url, optionsString, depsString]);
 
 	return [
 		data,
