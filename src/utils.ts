@@ -12,7 +12,7 @@ Array.prototype.extendTo = function<T>(length: number, value?: T): T[] {
 	return this;
 }
 
-export type StringIndexedObject = {[key: string]: string};
+export type StringIndexedObject = {[key: string]: any};
 
 export type SetState<T> = React.Dispatch<React.SetStateAction<T>>;
 
