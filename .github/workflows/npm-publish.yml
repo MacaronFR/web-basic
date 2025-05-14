@@ -18,7 +18,7 @@ jobs:
           node-version: 20
           registry-url: https://registry.npmjs.org/
       - run: npm install
-      - run: npm version ${{ github.event.release.name }}
+      - run: npm version ${{ github.event.release.name }} --git-tag-version=false
       - run: npm run build
       - run: npm publish
         env:
