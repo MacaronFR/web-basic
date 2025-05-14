@@ -4,11 +4,13 @@
 name: Node.js Package
 
 on:
-  release:
-    types: [published]
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
 
 jobs:
   publish-npm:
+    if: ${{ github.ref == 'refs/heads/master' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -17,6 +19,7 @@ jobs:
           node-version: 20
           registry-url: https://registry.npmjs.org/
       - run: npm install
+      - run: npm version from-git
       - run: npm run build
       - run: npm publish imacaron-basic@${{ github.event.release.name }}
         env:
