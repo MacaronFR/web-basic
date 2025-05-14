@@ -4,9 +4,9 @@
 name: Node.js Package
 
 on:
-  push:
-    tags:
-      - '[0-9]+.[0-9]+.[0-9]+'
+  release:
+    types:
+      - published
 
 jobs:
   publish-npm:
@@ -18,8 +18,8 @@ jobs:
           node-version: 20
           registry-url: https://registry.npmjs.org/
       - run: npm install
-      - run: npm version from-git
+      - run: npm version ${{ github.event.release.name }}
       - run: npm run build
-      - run: npm publish imacaron-basic@${{ github.event.release.name }}
+      - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
