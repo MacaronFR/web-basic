@@ -1,13 +1,13 @@
-import {useEffect, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 
 export interface APIConfig {
 	url: string,
-	prepareRequest: (options: useApiOptions) => RequestInit | null
+	prepareRequest: (options: apiOptions) => RequestInit | null
 }
 
 export const apiConfig: APIConfig = {
 	url: "",
-	prepareRequest: (options: useApiOptions) => {
+	prepareRequest: (options: apiOptions) => {
 		const res = {} as RequestInit
 		if (options.body) {
 			res.body = options.body;
@@ -24,13 +24,13 @@ export const apiConfig: APIConfig = {
 	}
 }
 
-export interface useApiOptions {
+export interface apiOptions {
 	method?: string,
 	body?: ReadableStream<any> | Blob | ArrayBufferView | ArrayBuffer | FormData | URLSearchParams | string,
 	contentType?: string
 }
 
-export async function api<T>(url: string, options?: useApiOptions): Promise<T> {
+export async function api<T>(url: string, options?: apiOptions): Promise<T> {
 
 	if(apiConfig.prepareRequest) {
 		const configOptions = apiConfig.prepareRequest(options ?? {});
@@ -39,6 +39,9 @@ export async function api<T>(url: string, options?: useApiOptions): Promise<T> {
 		}
 		const res = await fetch(apiConfig.url + url, configOptions)
 		if(res.status >= 200 && res.status < 300) {
+			if(res.status === 204) {
+				return undefined as unknown as T;
+			}
 			const data = await res.json();
 			return data as T;
 		} else {
@@ -50,10 +53,17 @@ export async function api<T>(url: string, options?: useApiOptions): Promise<T> {
 	}
 }
 
+interface useApiOptions extends apiOptions{
+	deps: any[]
+}
+
 export default function useApi<T>(url: string, options?: useApiOptions): [T | undefined, boolean, string | undefined] {
 	const [data, setData] = useState<T>();
 	const [error, setError] = useState<string>();
 	const [loading, setLoading] = useState(false);
+	const deps = useMemo(() => {
+		return JSON.stringify(options?.deps);
+	}, [options?.deps])
 	useEffect(() => {
 		setLoading(true);
 		api<T>(url, options).then(
@@ -66,7 +76,7 @@ export default function useApi<T>(url: string, options?: useApiOptions): [T | un
 				setLoading(false);
 			}
 		)
-	}, [url, options]);
+	}, [url, options, deps]);
 
 	return [
 		data,
