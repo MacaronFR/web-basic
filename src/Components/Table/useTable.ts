@@ -15,7 +15,7 @@ interface useTableOptions {
 	error?: string, //Error to display (can be state)
 }
 
-export default function useTable<T extends StringIndexedObject>(headers: Header[], data: T[], options: useTableOptions): TableProps<T> {
+export default function useTable<T extends StringIndexedObject>(headers: Header<T>[], data: T[], options: useTableOptions): TableProps<T> {
 	const [page, setPage] = useState(0);
 	const [pageSize, setPageSize] = useState(options.pageSize ?? 0);
 	const [sort, setSort] = useState<Sort[]>([]);
