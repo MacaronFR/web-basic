@@ -53,17 +53,13 @@ export async function api<T>(url: string, options?: apiOptions): Promise<T> {
 	}
 }
 
-interface useApiOptions extends apiOptions{
-	deps: any[]
-}
-
-export default function useApi<T>(url: string, options?: useApiOptions): [T | undefined, boolean, string | undefined] {
+export default function useApi<T>(url: string, deps: any[], options?: apiOptions): [T | undefined, boolean, string | undefined] {
 	const [data, setData] = useState<T>();
 	const [error, setError] = useState<string>();
 	const [loading, setLoading] = useState(false);
-	const deps = useMemo(() => {
-		return JSON.stringify(options?.deps);
-	}, [options?.deps])
+	const depsString = useMemo(() => {
+		return JSON.stringify(deps);
+	}, [deps])
 	useEffect(() => {
 		setLoading(true);
 		api<T>(url, options).then(
@@ -76,7 +72,7 @@ export default function useApi<T>(url: string, options?: useApiOptions): [T | un
 				setLoading(false);
 			}
 		)
-	}, [url, options, deps]);
+	}, [url, options, depsString]);
 
 	return [
 		data,
