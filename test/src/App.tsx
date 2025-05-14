@@ -18,6 +18,8 @@ import Select from "../../src/Components/Input/Select.tsx";
 import { Modal, useModal } from "../../src/Components/Modal"
 import logo from  "./logo.svg";
 import {SelectValue} from "../../src";
+import {DropDown} from "../../src/Components/DropDown";
+import {DropDownSeparator} from "../../src/Components/DropDown/DropDown.tsx";
 
 export default function App() {
 	const table = useTable(
@@ -113,6 +115,13 @@ export default function App() {
 							<Select options={[{label: "Test", value: "Bonjour", disabled: true}, {label: "Test2", value: "Hello", disabled: false}, {label: "Test3", value: "Guten Tag"}, {label: "Test4", value: "Hola"}]} value={select} setValue={setSelect} defaultValue={"Bonjour"}/>
 							<Select options={[{label: "Test", value: "Bonjour", disabled: true}, {label: "Test2", value: "Hello", disabled: false}, {label: "Test3", value: "Guten Tag"}, {label: "Test4", value: "Hola"}]} value={select} setValue={setSelect} defaultValue={"Bonjour"} disabled={true}/>
 						</div>
+					</Card>
+					<Card className={"wb:flex"} title={"DropDown"}>
+						<DropDown title={"DropDown"}>
+							Element 1
+							<DropDownSeparator/>
+							Element 2
+						</DropDown>
 					</Card>
 				</div>
 			</div>

@@ -108,4 +108,8 @@
 
 	/* Modal */
 	--color-modal-screen: --alpha(var(--wb-color-black) / 40%);
+
+	/* DropDown */
+	--color-dropdown-bg: var(--wb-color-zinc-900);
+	--color-dropdown-border: --alpha(var(--wb-color-amber-100) / 0.25);
 }
