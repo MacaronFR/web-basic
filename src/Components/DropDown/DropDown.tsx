@@ -6,6 +6,7 @@ import {FiChevronDown} from "react-icons/fi";
 interface DropDownProps {
 	title: React.ReactNode,
 	children: React.ReactNode,
+	align?: "left" | "right"
 }
 
 export default function DropDown(props: DropDownProps) {
@@ -26,7 +27,7 @@ export default function DropDown(props: DropDownProps) {
 				<p>{props.title}</p>
 				<FiChevronDown className={clsx(display && "wb:rotate-180")}/>
 			</div>
-			<div className={clsx("wb:absolute wb:bg-dropdown-bg wb:border wb:border-dropdown-border wb:rounded-md wb:top-full wb:mt-1 wb:w-full wb:p-1", display || "wb:hidden")}>
+			<div className={clsx("wb:absolute wb:bg-dropdown-bg wb:border wb:border-dropdown-border wb:rounded-md wb:top-full wb:mt-1 wb:min-w-full wb:p-1", display || "wb:hidden", props.align === "right" && "wb:right-0", props.align === "left" && "wb:left-0")}>
 				{props.children}
 			</div>
 		</div>

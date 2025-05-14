@@ -116,11 +116,20 @@ export default function App() {
 							<Select options={[{label: "Test", value: "Bonjour", disabled: true}, {label: "Test2", value: "Hello", disabled: false}, {label: "Test3", value: "Guten Tag"}, {label: "Test4", value: "Hola"}]} value={select} setValue={setSelect} defaultValue={"Bonjour"} disabled={true}/>
 						</div>
 					</Card>
-					<Card className={"wb:flex"} title={"DropDown"}>
-						<DropDown title={"DropDown"}>
+					<Card className={"wb:flex wb:gap-2"} title={"DropDown"}>
+						<DropDown title={"DropDown"} align={"left"}>
 							Element 1
 							<DropDownSeparator/>
 							Element 2
+							<DropDownSeparator/>
+							Very long element 3
+						</DropDown>
+						<DropDown title={"DropDown"} align={"right"}>
+							Element 1
+							<DropDownSeparator/>
+							Element 2
+							<DropDownSeparator/>
+							Very long element 3
 						</DropDown>
 					</Card>
 				</div>
