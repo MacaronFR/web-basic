@@ -1,5 +1,5 @@
 import {useMemo} from "react";
-import type {SetState, StringIndexedObject} from "../../utils.ts";
+import {deepDotAccess, SetState, StringIndexedObject} from "../../utils";
 import type Header from "./Header.ts";
 import HeaderCell from "./HeaderCell";
 import Cell from "./Cell";
@@ -9,7 +9,7 @@ import {DefaultLoading} from "./DefaultLoading";
 import {Sort, SortOrder} from "./Sort";
 
 export interface TableProps<T extends StringIndexedObject> {
-	header: Header[],
+	header: Header<T>[],
 	data: T[],
 	page?: number,
 	maxPage?: number,
@@ -53,7 +53,9 @@ export default function Table<T extends StringIndexedObject>(props: TableProps<T
 				{props.error !== undefined && <div className={"wb:col-span-full wb:h-24 wb:flex wb:items-center wb:justify-center"}>{props.error}</div> || props.loading && (props.loadingElement ?? <DefaultLoading/>) || props.data.map((row, index) => {
 					return (
 						<div className={"wb:contents wb:group"} key={index}>
-							{props.header.map((header, index) => <Cell key={index} className={header.columnClassName}>{row[header.id]}</Cell>)}
+							{props.header.map((header, index) => <Cell key={index} className={header.columnClassName}>
+								{header.render !== undefined && header.render(row) || deepDotAccess(row, header.id) }
+							</Cell>)}
 						</div>
 					)
 				})}
