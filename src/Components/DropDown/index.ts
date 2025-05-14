@@ -1,3 +1,3 @@
-import DropDown from './DropDown';
+import DropDown, { DropDownSeparator } from './DropDown';
 
-export { DropDown };
+export { DropDown, DropDownSeparator };
