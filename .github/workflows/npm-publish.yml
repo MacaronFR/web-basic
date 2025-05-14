@@ -16,6 +16,7 @@ jobs:
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org/
+      - run: npm install
       - run: npm run build
       - run: npm publish imacaron-basic@{{ github.event.release.name }}
         env:
