@@ -110,12 +110,13 @@ export default function Select(props: SelectProps) {
 				)}
 			</select>
 			<div
-				className={clsx("wb:border wb:border-input-border wb:bg-input wb:px-2 wb:py-0.5 wb:rounded-md wb:flex wb:justify-between wb:items-center wb:min-w-48 wb:cursor-pointer wb:group-focus:outline wb:group-focus:outline-input-focus wb:peer-disabled:border-input-border-wb:disabled wb:peer-disabled:text-input-text-disabled wb:peer-disabled:outline-none wb:peer-disabled:cursor-default", open && "wb:rounded-b-none")}
+				className={clsx("wb:border wb:border-input-border wb:bg-input wb:px-2 wb:py-0.5 wb:min-h-7 wb:rounded-md wb:flex wb:justify-between wb:items-center wb:min-w-48 wb:cursor-pointer wb:group-focus:outline wb:group-focus:outline-input-focus wb:peer-disabled:border-input-border-wb:disabled wb:peer-disabled:text-input-text-disabled wb:peer-disabled:outline-none wb:peer-disabled:cursor-default", open && "wb:rounded-b-none")}
 			>
 				<span>{props.options.find(v => v.value === props.value)?.label}</span>
+				{props.label && <span className={clsx("wb:absolute wb:text-input-label wb:bg-input wb:px-1 wb:rounded-sm", props.value !== undefined && "wb:-translate-y-8/10 wb:text-sm")}>{props.label}</span> }
 				<FiChevronDown className={clsx("transition", open && "rotate-x-180")}/>
 			</div>
-			{ open && <div ref={optionsContainer} className={"wb:absolute wb:top-full wb:left-0 wb:w-full wb:bg-input wb:border wb:border-t-transparent wb:rounded-b-md wb:border-input-border wb:overflow-y-auto"} style={{maxHeight: maxLines * lineSize}} tabIndex={-1}>
+			{ open && <div ref={optionsContainer} className={"wb:absolute wb:top-full wb:left-0 wb:w-full wb:bg-input wb:border wb:border-t-transparent wb:rounded-b-md wb:border-input-border wb:overflow-y-auto wb:z-20"} style={{maxHeight: maxLines * lineSize}} tabIndex={-1}>
 				{ props.options.map((option, i) =>
 					<div
 						key={i}

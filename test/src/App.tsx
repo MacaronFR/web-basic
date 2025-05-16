@@ -49,10 +49,14 @@ export default function App() {
 	const [value, setValue] = useState("");
 	const [checked, setChecked] = useState(false);
 	const [select, setSelect] = useState<SelectValue>();
+	const [emptySelect, setEmptySelect] = useState<SelectValue>();
 	const modal = useModal();
 	return (
-		<div className={"wb:w-screen wb:h-screen wb:overflow-hidden wb:bg-background wb:text-text wb:flex wb:flex-col"}>
-			<Header title={<><img alt={"Logo"} className={""} src={logo}/><p className={"wb:hidden wb:xs:block wb:text-amber-200"}>IMacaron - Web Basic</p></>} displayMenu={menu.setDisplay}>
+		<div className={"wb:w-screen wb:h-screen wb:overflow-hidden wb:overflow-y-auto wb:bg-background wb:text-text wb:flex wb:flex-col"}>
+			<Header
+				title={<><img alt={"Logo"} src={logo}/><p className={"wb:hidden wb:xs:block wb:text-amber-200"}>IMacaron - Web Basic</p></>}
+				displayMenu={menu.setDisplay}
+			>
 				<a href={"https://www.npmjs.com/package/imacaron-basic"} target={"_blank"} className={"wb:hover:scale-105 wb:text-2xl"}>
 					<SiNpm/>
 				</a>
@@ -114,6 +118,7 @@ export default function App() {
 						<div className={"wb:flex wb:flex-col wb:xs:flex-row wb:gap-2 wb:items-center"}>
 							<Select options={[{label: "Test", value: "Bonjour", disabled: true}, {label: "Test2", value: "Hello", disabled: false}, {label: "Test3", value: "Guten Tag"}, {label: "Test4", value: "Hola"}]} value={select} setValue={setSelect} defaultValue={"Bonjour"}/>
 							<Select options={[{label: "Test", value: "Bonjour", disabled: true}, {label: "Test2", value: "Hello", disabled: false}, {label: "Test3", value: "Guten Tag"}, {label: "Test4", value: "Hola"}]} value={select} setValue={setSelect} defaultValue={"Bonjour"} disabled={true}/>
+							<Select options={[{label: "Test", value: "Bonjour", disabled: true}, {label: "Test2", value: "Hello", disabled: false}, {label: "Test3", value: "Guten Tag"}, {label: "Test4", value: "Hola"}]} value={emptySelect} setValue={setEmptySelect} label={"Empty select"}/>
 						</div>
 					</Card>
 					<Card className={"wb:flex wb:gap-2"} title={"DropDown"}>
