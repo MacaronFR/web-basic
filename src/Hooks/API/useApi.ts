@@ -2,7 +2,9 @@ import {useEffect, useMemo, useState} from "react";
 
 export interface APIConfig {
 	url: string,
-	prepareRequest: (options: apiOptions) => RequestInit | null
+	prepareRequest: (options: apiOptions) => RequestInit | null,
+	onError?: (response: Response) => void,
+	postRequest?: (response: Response) => void,
 }
 
 export const apiConfig: APIConfig = {
@@ -31,7 +33,6 @@ export interface apiOptions {
 }
 
 export async function api<T>(url: string, options?: apiOptions): Promise<T> {
-
 	if(apiConfig.prepareRequest) {
 		const configOptions = apiConfig.prepareRequest(options ?? {});
 		if(configOptions === null) {
@@ -43,9 +44,15 @@ export async function api<T>(url: string, options?: apiOptions): Promise<T> {
 				return undefined as unknown as T;
 			}
 			const data = await res.json();
+			if(apiConfig.postRequest) {
+				apiConfig.postRequest(res);
+			}
 			return data as T;
 		} else {
 			const error = await res.text();
+			if(apiConfig.onError) {
+				apiConfig.onError(res);
+			}
 			throw new Error(error);
 		}
 	} else {
