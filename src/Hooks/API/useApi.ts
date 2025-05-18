@@ -54,7 +54,7 @@ export interface apiOptions<T> {
 
 export function useRequest() {
 	const rawRequest = useRawRequest();
-	return async <R, B>(url: string, options?: apiOptions<B>): Promise<R | undefined> => {
+	return async <R>(url: string, options?: apiOptions<{}>): Promise<R | undefined> => {
 		if(options) {
 			const opt = {
 				method: options.method,
@@ -68,7 +68,7 @@ export function useRequest() {
 	}
 }
 
-export default function useApi<R, B>(url: string, deps: any[], options?: apiOptions<B>): [R | undefined, boolean, string | undefined] {
+export default function useApi<R>(url: string, deps: any[], options?: apiOptions<object>): [R | undefined, boolean, string | undefined] {
 	const [data, setData] = useState<R>();
 	const [error, setError] = useState<string>();
 	const [loading, setLoading] = useState(false);
@@ -81,7 +81,7 @@ export default function useApi<R, B>(url: string, deps: any[], options?: apiOpti
 	const api = useRequest();
 	useEffect(() => {
 		setLoading(true);
-		api<R, B>(url, options).then(
+		api<R>(url, options).then(
 			data => {
 				setData(data);
 				setLoading(false);
