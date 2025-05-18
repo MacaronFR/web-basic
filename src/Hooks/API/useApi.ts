@@ -95,7 +95,7 @@ export default function useApi<R>(url: string, deps: any[], options?: apiOptions
 				setLoading(false);
 			}
 		)
-	}, [url, optionsString, depsString]);
+	}, [url, optionsString, depsString, api]);
 
 	return [
 		data,
