@@ -1,10 +1,8 @@
 import {useContext, useEffect, useMemo, useState} from "react";
 import {APIContext} from "./APIProvider";
 
-interface rawApiOptions {
-	method?: string,
-	body?: string | FormData | URLSearchParams,
-	contentType?: string
+interface rawApiOptions extends apiOptions<string | FormData | URLSearchParams> {
+	contentType?: string,
 }
 
 export function useRawRequest() {
@@ -12,7 +10,12 @@ export function useRawRequest() {
 	return async <T>(url: string, options?: rawApiOptions): Promise<T | undefined> => {
 		let req = {} as RequestInit;
 		if(config.prepareRequest) {
-			req = config.prepareRequest(req);
+			const tmp = config.prepareRequest(req);
+			if(tmp === undefined) {
+				return undefined;
+			} else {
+				req = tmp;
+			}
 		}
 		if (options) {
 			req.method = options.method ?? "GET";
@@ -49,7 +52,8 @@ export function useRawRequest() {
 
 export interface apiOptions<T> {
 	method?: string,
-	body?: T
+	body?: T,
+	if?: boolean
 }
 
 export function useRequest() {

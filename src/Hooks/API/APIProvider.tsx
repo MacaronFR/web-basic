@@ -4,7 +4,7 @@ import {createContext} from "react";
 interface APIContextType {
 	baseUrl: string,
 	onError?: (error: any) => void
-	prepareRequest?: (request: RequestInit) => RequestInit
+	prepareRequest?: (request: RequestInit) => RequestInit | undefined
 }
 
 export const APIContext = createContext<APIContextType>({
