@@ -1,3 +1,4 @@
-import useApi, { api, apiConfig, APIConfig} from "./useApi";
+import useApi, { useRequest, useRawRequest } from "./useApi";
+import {APIProvider} from "./APIProvider";
 
-export { useApi, api, apiConfig, APIConfig };
+export { useApi, useRequest, useRawRequest, APIProvider };

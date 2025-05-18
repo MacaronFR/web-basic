@@ -1,67 +1,75 @@
-import {useEffect, useMemo, useState} from "react";
+import {useContext, useEffect, useMemo, useState} from "react";
+import {APIContext} from "./APIProvider";
 
-export interface APIConfig {
-	url: string,
-	prepareRequest: (options: apiOptions) => RequestInit | null,
-	onError?: (response: Response) => void,
-	postRequest?: (response: Response) => void,
-}
-
-export const apiConfig: APIConfig = {
-	url: "",
-	prepareRequest: (options: apiOptions) => {
-		const res = {} as RequestInit
-		if (options.body) {
-			res.body = options.body;
-		}
-		if (options.method) {
-			res.method = options.method;
-		}
-		if (options.contentType) {
-			const headers = new Headers();
-			headers.append("Content-Type", options.contentType);
-			res.headers = headers;
-		}
-		return res;
-	}
-}
-
-export interface apiOptions {
+interface rawApiOptions {
 	method?: string,
-	body?: ReadableStream<any> | Blob | ArrayBufferView | ArrayBuffer | FormData | URLSearchParams | string,
+	body?: string | FormData | URLSearchParams,
 	contentType?: string
 }
 
-export async function api<T>(url: string, options?: apiOptions): Promise<T> {
-	if(apiConfig.prepareRequest) {
-		const configOptions = apiConfig.prepareRequest(options ?? {});
-		if(configOptions === null) {
-			throw new Error("No config");
+export function useRawRequest() {
+	const config = useContext(APIContext);
+	return async <T>(url: string, options?: rawApiOptions): Promise<T | undefined> => {
+		let req = {} as RequestInit;
+		if(config.prepareRequest) {
+			req = config.prepareRequest(req);
 		}
-		const res = await fetch(apiConfig.url + url, configOptions)
-		if(res.status >= 200 && res.status < 300) {
-			if(res.status === 204) {
-				return undefined as unknown as T;
+		if (options) {
+			req.method = options.method ?? "GET";
+			req.body = options.body;
+			if(req.headers === undefined) {
+				req.headers = new Headers();
 			}
-			const data = await res.json();
-			if(apiConfig.postRequest) {
-				apiConfig.postRequest(res);
+			if(options.contentType) {
+				(req.headers as Headers).append("Content-Type", options.contentType);
 			}
-			return data as T;
-		} else {
-			const error = await res.text();
-			if(apiConfig.onError) {
-				apiConfig.onError(res);
-			}
-			throw new Error(error);
 		}
-	} else {
-		throw new Error("No config");
+		try {
+			const res = await fetch(config.baseUrl + url, req);
+			if (res.status >= 200 && res.status < 300) {
+				if (res.status === 204) {
+					return undefined;
+				}
+				return res.json();
+			} else {
+				if(config.onError) {
+					config.onError(res)
+				}
+				return undefined
+			}
+		} catch(e) {
+			console.error(e);
+			if(config.onError) {
+				config.onError(e);
+			}
+			return undefined;
+		}
 	}
 }
 
-export default function useApi<T>(url: string, deps: any[], options?: apiOptions): [T | undefined, boolean, string | undefined] {
-	const [data, setData] = useState<T>();
+export interface apiOptions<T> {
+	method?: string,
+	body?: T
+}
+
+export function useRequest() {
+	const rawRequest = useRawRequest();
+	return async <R, B>(url: string, options?: apiOptions<B>): Promise<R | undefined> => {
+		if(options) {
+			const opt = {
+				method: options.method,
+				body: options.body ? JSON.stringify(options.body) : undefined,
+				contentType: options.body ? "application/json" : undefined
+			}
+			return rawRequest(url, opt)
+		} else {
+			return rawRequest(url);
+		}
+	}
+}
+
+export default function useApi<R, B>(url: string, deps: any[], options?: apiOptions<B>): [R | undefined, boolean, string | undefined] {
+	const [data, setData] = useState<R>();
 	const [error, setError] = useState<string>();
 	const [loading, setLoading] = useState(false);
 	const depsString = useMemo(() => {
@@ -70,9 +78,10 @@ export default function useApi<T>(url: string, deps: any[], options?: apiOptions
 	const optionsString = useMemo(() => {
 		return JSON.stringify(options);
 	}, [options]);
+	const api = useRequest();
 	useEffect(() => {
 		setLoading(true);
-		api<T>(url, options).then(
+		api<R, B>(url, options).then(
 			data => {
 				setData(data);
 				setLoading(false);
