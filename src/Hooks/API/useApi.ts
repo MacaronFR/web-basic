@@ -52,7 +52,7 @@ export function useRawRequest() {
 
 export interface apiOptions<T> {
 	method?: string,
-	body?: T,
+	body?: T | null,
 	if?: boolean
 }
 
