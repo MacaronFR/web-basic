@@ -1,4 +1,4 @@
-import {useContext, useEffect, useMemo, useState} from "react";
+import {useCallback, useContext, useEffect, useMemo, useState} from "react";
 import {APIContext} from "./APIProvider";
 
 interface rawApiOptions extends apiOptions<string | FormData | URLSearchParams> {
@@ -7,7 +7,7 @@ interface rawApiOptions extends apiOptions<string | FormData | URLSearchParams> 
 
 export function useRawRequest() {
 	const config = useContext(APIContext);
-	return async <T>(url: string, options?: rawApiOptions): Promise<T | undefined> => {
+	return useCallback(async <T>(url: string, options?: rawApiOptions): Promise<T | undefined> => {
 		let req = {} as RequestInit;
 		if(config.prepareRequest) {
 			const tmp = config.prepareRequest(req);
@@ -47,7 +47,7 @@ export function useRawRequest() {
 			}
 			return undefined;
 		}
-	}
+	}, [config.onError, config.prepareRequest, config.baseUrl]);
 }
 
 export interface apiOptions<T> {
@@ -58,7 +58,7 @@ export interface apiOptions<T> {
 
 export function useRequest() {
 	const rawRequest = useRawRequest();
-	return async <R>(url: string, options?: apiOptions<{}>): Promise<R | undefined> => {
+	return useCallback(async <R>(url: string, options?: apiOptions<{}>): Promise<R | undefined> => {
 		if(options) {
 			const opt = {
 				method: options.method,
@@ -69,7 +69,7 @@ export function useRequest() {
 		} else {
 			return rawRequest(url);
 		}
-	}
+	}, [rawRequest]);
 }
 
 export default function useApi<R>(url: string, deps: any[], options?: apiOptions<object>): [R | undefined, boolean, string | undefined] {
