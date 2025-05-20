@@ -19,6 +19,7 @@ export default function useAuthentication(): UseAuthentication {
 	const location = useLocation();
 
 	const fetchToken = useCallback(async (type: "authorization" | "refresh", code: string) => {
+		setLoading(true);
 		if (type === "authorization") {
 			const codeVerifier = sessionStorage.getItem("code_verifier");
 			if (!codeVerifier) {
@@ -71,6 +72,8 @@ export default function useAuthentication(): UseAuthentication {
 				console.error(e);
 			}
 		}
+		setLoading(false);
+		setIsFetching(false);
 	}, [context]);
 
 	useEffect(() => {
