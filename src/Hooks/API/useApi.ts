@@ -36,7 +36,10 @@ export function useRawRequest() {
 				return res.json();
 			} else {
 				if(config.onError) {
-					if(config.onError(res)) {
+					const result = config.onError(res);
+					if(typeof result === "boolean" && result) {
+						rawRequest(url, options);
+					} else if(await result) {
 						rawRequest(url, options);
 					}
 				}

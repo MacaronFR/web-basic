@@ -3,7 +3,7 @@ import {createContext} from "react";
 
 interface APIContextType {
 	baseUrl: string,
-	onError?: (error: any) => boolean
+	onError?: (error: any) => boolean | Promise<boolean>,
 	prepareRequest?: (request: RequestInit) => RequestInit | undefined
 }
 
