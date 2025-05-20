@@ -7,11 +7,11 @@ interface rawApiOptions extends apiOptions<string | FormData | URLSearchParams> 
 
 export function useRawRequest() {
 	const config = useContext(APIContext);
-	const rawRequest = useCallback(async <T>(url: string, options?: rawApiOptions): Promise<T | undefined> => {
+	return useCallback(async <T>(url: string, options?: rawApiOptions): Promise<T | undefined> => {
 		let req = {} as RequestInit;
-		if(config.prepareRequest) {
+		if (config.prepareRequest) {
 			const tmp = config.prepareRequest(req);
-			if(tmp === undefined) {
+			if (tmp === undefined) {
 				return undefined;
 			} else {
 				req = tmp;
@@ -20,10 +20,10 @@ export function useRawRequest() {
 		if (options) {
 			req.method = options.method ?? "GET";
 			req.body = options.body;
-			if(req.headers === undefined) {
+			if (req.headers === undefined) {
 				req.headers = new Headers();
 			}
-			if(options.contentType) {
+			if (options.contentType) {
 				(req.headers as Headers).append("Content-Type", options.contentType);
 			}
 		}
@@ -35,25 +35,19 @@ export function useRawRequest() {
 				}
 				return res.json();
 			} else {
-				if(config.onError) {
-					const result = config.onError(res);
-					if(typeof result === "boolean" && result) {
-						rawRequest(url, options);
-					} else if(await result) {
-						rawRequest(url, options);
-					}
+				if (config.onError) {
+					config.onError(res);
 				}
 				return undefined
 			}
-		} catch(e) {
+		} catch (e) {
 			console.error(e);
-			if(config.onError) {
+			if (config.onError) {
 				config.onError(e);
 			}
 			return undefined;
 		}
 	}, [config.onError, config.prepareRequest, config.baseUrl]);
-	return rawRequest;
 }
 
 export interface apiOptions<T> {
@@ -90,6 +84,7 @@ export default function useApi<R>(url: string, deps: any[], options?: apiOptions
 	}, [options]);
 	const api = useRequest();
 	useEffect(() => {
+		console.log("useApi", url, optionsString, depsString);
 		setLoading(true);
 		api<R>(url, options).then(
 			data => {
