@@ -48,6 +48,9 @@ export default function useAuthentication(): UseAuthentication {
 				setToken(token.access_token);
 			} catch (e) {
 				console.error(e);
+				setToken(null);
+				localStorage.removeItem("token");
+				localStorage.removeItem("refresh_token");
 			}
 		} else if(type === "refresh") {
 			try {
@@ -70,6 +73,9 @@ export default function useAuthentication(): UseAuthentication {
 				setToken(token.access_token);
 			} catch (e) {
 				console.error(e);
+				setToken(null);
+				localStorage.removeItem("token");
+				localStorage.removeItem("refresh_token");
 			}
 		}
 		setLoading(false);
