@@ -14,6 +14,7 @@ interface UseAuthentication {
 export default function useAuthentication(): UseAuthentication {
 	const [token, setToken] = useState<string | null>(null);
 	const [loading, setLoading] = useState<boolean>(true);
+	const [isFetching, setIsFetching] = useState<boolean>(false);
 	const context = useContext(AuthenticationContext);
 	const location = useLocation();
 
@@ -76,14 +77,18 @@ export default function useAuthentication(): UseAuthentication {
 		const urlParams = new URLSearchParams(location.search);
 		const authCode = urlParams.get('code');
 		if(authCode) {
-			fetchToken("authorization", authCode).then(() => {
-				setLoading(false);
-				window.location.href = window.location.origin + location.pathname;
-			});
+			if(!isFetching) {
+				setIsFetching(true);
+				fetchToken("authorization", authCode).then(() => {
+					setLoading(false);
+					setIsFetching(false);
+					window.location.href = window.location.origin + location.pathname;
+				});
+			}
 		} else {
 			setLoading(false);
 		}
-	}, [location]);
+	}, [location, isFetching]);
 
 	const login = useCallback(async (destination: string, origin?: string) => {
 		const {code_verifier, code_challenge} = await pkceChallenge();

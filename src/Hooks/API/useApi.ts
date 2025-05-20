@@ -7,7 +7,7 @@ interface rawApiOptions extends apiOptions<string | FormData | URLSearchParams> 
 
 export function useRawRequest() {
 	const config = useContext(APIContext);
-	return useCallback(async <T>(url: string, options?: rawApiOptions): Promise<T | undefined> => {
+	const rawRequest = useCallback(async <T>(url: string, options?: rawApiOptions): Promise<T | undefined> => {
 		let req = {} as RequestInit;
 		if(config.prepareRequest) {
 			const tmp = config.prepareRequest(req);
@@ -36,7 +36,9 @@ export function useRawRequest() {
 				return res.json();
 			} else {
 				if(config.onError) {
-					config.onError(res)
+					if(config.onError(res)) {
+						rawRequest(url, options);
+					}
 				}
 				return undefined
 			}
@@ -48,6 +50,7 @@ export function useRawRequest() {
 			return undefined;
 		}
 	}, [config.onError, config.prepareRequest, config.baseUrl]);
+	return rawRequest;
 }
 
 export interface apiOptions<T> {
