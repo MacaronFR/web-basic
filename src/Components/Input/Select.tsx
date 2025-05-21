@@ -70,7 +70,7 @@ export default function Select(props: SelectProps) {
 	return (
 		<div
 			ref={container}
-			className={"wb:relative wb:group wb:focus:outline-none"}
+			className={"wb:relative wb:group wb:focus:outline-none wb:w-48 wb:mt-2"}
 			onClick={() => props.disabled !== true && setClick(true)}
 			onFocus={() => props.disabled !== true && setFocus(true)}
 			onBlur={() => props.disabled !== true && setFocus(false)}
