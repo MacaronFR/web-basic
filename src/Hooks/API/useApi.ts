@@ -84,7 +84,6 @@ export default function useApi<R>(url: string, deps: any[], options?: apiOptions
 	}, [options]);
 	const api = useRequest();
 	useEffect(() => {
-		console.log("useApi", url, optionsString, depsString);
 		setLoading(true);
 		api<R>(url, options).then(
 			data => {

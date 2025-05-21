@@ -74,8 +74,8 @@ export function AuthenticationProvider(props: AuthenticationProviderProps) {
 
 				const token = await tokenResponse.json();
 
-				localStorage.setItem("token", token.access_token);
-				localStorage.setItem("refresh_token", token.refresh_token);
+				sessionStorage.setItem("token", token.access_token);
+				sessionStorage.setItem("refresh_token", token.refresh_token);
 				setIsAuthenticated(true);
 				setLoading(false);
 				setIsFetching(false);
@@ -98,8 +98,8 @@ export function AuthenticationProvider(props: AuthenticationProviderProps) {
 
 				const token = await tokenResponse.json();
 
-				localStorage.setItem("token", token.access_token);
-				localStorage.setItem("refresh_token", token.refresh_token);
+				sessionStorage.setItem("token", token.access_token);
+				sessionStorage.setItem("refresh_token", token.refresh_token);
 				setIsAuthenticated(true);
 				setLoading(false);
 				setIsFetching(false);
@@ -112,11 +112,9 @@ export function AuthenticationProvider(props: AuthenticationProviderProps) {
 	useEffect(() => {
 		const urlParams = new URLSearchParams(location.search);
 		const authCode = urlParams.get('code');
-		console.log("Auth code", authCode);
 		if(authCode) {
 			window.location.href = window.location.origin + location.pathname;
 			if(!isFetching) {
-				console.log("fect")
 				fetchToken("authorization", authCode).then(() => {
 					window.location.href = window.location.origin + location.pathname;
 				});
@@ -141,14 +139,13 @@ export function AuthenticationProvider(props: AuthenticationProviderProps) {
 
 	const logout = useCallback((to: string) => {
 		setIsAuthenticated(false);
-		localStorage.removeItem("token");
-		localStorage.removeItem("refresh_token");
+		sessionStorage.removeItem("token");
+		sessionStorage.removeItem("refresh_token");
 		window.location.href = to + (location.search === "" ? "?" : "") + "origin=" + location.pathname;
 	}, [location]);
 
 	useEffect(() => {
-		if(localStorage.getItem("token")) {
-			console.log("ayth")
+		if(sessionStorage.getItem("token")) {
 			setIsAuthenticated(true);
 		}
 	}, []);
@@ -161,7 +158,7 @@ export function AuthenticationProvider(props: AuthenticationProviderProps) {
 		setIsFetching: setIsFetching,
 		login: login,
 		fetchToken: fetchToken,
-		token: localStorage.getItem("token") ?? "",
+		token: sessionStorage.getItem("token") ?? "",
 		logout: logout,
 		isAuthenticated: isAuthenticated,
 	}
