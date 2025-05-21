@@ -74,8 +74,8 @@ export function AuthenticationProvider(props: AuthenticationProviderProps) {
 
 				const token = await tokenResponse.json();
 
-				sessionStorage.setItem("token", token.access_token);
-				sessionStorage.setItem("refresh_token", token.refresh_token);
+				localStorage.setItem("token", token.access_token);
+				localStorage.setItem("refresh_token", token.refresh_token);
 				setIsAuthenticated(true);
 				setLoading(false);
 				setIsFetching(false);
@@ -98,8 +98,8 @@ export function AuthenticationProvider(props: AuthenticationProviderProps) {
 
 				const token = await tokenResponse.json();
 
-				sessionStorage.setItem("token", token.access_token);
-				sessionStorage.setItem("refresh_token", token.refresh_token);
+				localStorage.setItem("token", token.access_token);
+				localStorage.setItem("refresh_token", token.refresh_token);
 				setIsAuthenticated(true);
 				setLoading(false);
 				setIsFetching(false);
@@ -113,7 +113,6 @@ export function AuthenticationProvider(props: AuthenticationProviderProps) {
 		const urlParams = new URLSearchParams(location.search);
 		const authCode = urlParams.get('code');
 		if(authCode) {
-			window.location.href = window.location.origin + location.pathname;
 			if(!isFetching) {
 				fetchToken("authorization", authCode).then(() => {
 					window.location.href = window.location.origin + location.pathname;
@@ -139,13 +138,13 @@ export function AuthenticationProvider(props: AuthenticationProviderProps) {
 
 	const logout = useCallback((to: string) => {
 		setIsAuthenticated(false);
-		sessionStorage.removeItem("token");
-		sessionStorage.removeItem("refresh_token");
+		localStorage.removeItem("token");
+		localStorage.removeItem("refresh_token");
 		window.location.href = to + (location.search === "" ? "?" : "") + "origin=" + location.pathname;
 	}, [location]);
 
 	useEffect(() => {
-		if(sessionStorage.getItem("token")) {
+		if(localStorage.getItem("token")) {
 			setIsAuthenticated(true);
 		}
 	}, []);
@@ -158,7 +157,7 @@ export function AuthenticationProvider(props: AuthenticationProviderProps) {
 		setIsFetching: setIsFetching,
 		login: login,
 		fetchToken: fetchToken,
-		token: sessionStorage.getItem("token") ?? "",
+		token: localStorage.getItem("token") ?? "",
 		logout: logout,
 		isAuthenticated: isAuthenticated,
 	}
