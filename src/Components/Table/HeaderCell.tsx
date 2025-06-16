@@ -25,8 +25,8 @@ export default function HeaderCell(props: HeaderCellProps) {
 		<div onClick={() => toggleSort()} className={clsx("wb:select-none wb:bg-table-header wb:hover:bg-table-header-hover wb:first:rounded-tl-md wb:last:rounded-tr-md wb:px-2 wb:border-b wb:border-table-border wb:flex wb:justify-between wb:items-center", props.sortable && props.setSort && "cursor-pointer")}>
 			<div className={"text-xl text-nowrap py-1"}>{ props.children }</div>
 			<div>
-				{props.sortable && props.sort === SortOrder.Asc && <span className={"text-2xl"}>&#8595;</span>}
-				{props.sortable && props.sort === SortOrder.Desc && <span className={"text-2xl"}>&#8593;</span>}
+				{props.sortable && props.sort === SortOrder.Desc && <span className={"text-2xl"}>&#8595;</span>}
+				{props.sortable && props.sort === SortOrder.Asc && <span className={"text-2xl"}>&#8593;</span>}
 			</div>
 		</div>
 	);
