@@ -7,18 +7,19 @@ import {StringIndexedObject} from "../../utils";
 interface useTableOptions {
 	pageSize?: number, //The default page size
 	pageSizeOptions?: number[], //The options of page size
-	maxPage?: number, //The max of page (can be state)
+	maxPage?: number, //The max of page (can be React state)
 	pageable?: boolean, //If the pagination system is active
 	sortable?: boolean, //If the table is sortable
-	loading?: boolean, //Loading state (can be state)
+	defaultSort?: Sort[], //Default sort for the table
+	loading?: boolean, //Loading state (can be React state)
 	loadingElement?: React.ReactNode, //An element to customize loading
-	error?: string, //Error to display (can be state)
+	error?: string, //Error to display (can be React state)
 }
 
 export default function useTable<T extends StringIndexedObject>(headers: Header<T>[], data: T[], options: useTableOptions): TableProps<T> {
 	const [page, setPage] = useState(0);
 	const [pageSize, setPageSize] = useState(options.pageSize ?? 0);
-	const [sort, setSort] = useState<Sort[]>([]);
+	const [sort, setSort] = useState<Sort[]>(options.defaultSort ?? []);
 	return {
 		header: headers,
 		data: data,
