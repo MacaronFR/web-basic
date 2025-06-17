@@ -26,6 +26,9 @@ export function useRawRequest() {
 			if (options.contentType) {
 				(req.headers as Headers).append("Content-Type", options.contentType);
 			}
+			if (options.if === false) {
+				return undefined;
+			}
 		}
 		try {
 			const res = await fetch(config.baseUrl + url, req);
