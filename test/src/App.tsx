@@ -20,6 +20,10 @@ import logo from  "./logo.svg";
 import {SelectValue} from "../../src";
 import {DropDown} from "../../src/Components/DropDown";
 import {DropDownSeparator} from "../../src/Components/DropDown/DropDown.tsx";
+import Badge from "../../src/Components/Badge/Badge.tsx";
+import BadgePrimary from "../../src/Components/Badge/BadgePrimary.tsx";
+import BadgeSecondary from "../../src/Components/Badge/BadgeSecondary.tsx";
+import {BadgeCancel, BadgeDanger} from "../../src/Components/Badge";
 
 export default function App() {
 	const table = useTable(
@@ -136,6 +140,13 @@ export default function App() {
 							<DropDownSeparator/>
 							Very long element 3
 						</DropDown>
+					</Card>
+					<Card title={"Badge"} className={"wb:flex wb:gap-4"}>
+						<Badge/>
+						<BadgePrimary/>
+						<BadgeSecondary/>
+						<BadgeCancel/>
+						<BadgeDanger/>
 					</Card>
 				</div>
 			</div>
