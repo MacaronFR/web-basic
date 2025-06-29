@@ -17,9 +17,8 @@ import CheckBox from "../../src/Components/Input/CheckBox.tsx";
 import Select from "../../src/Components/Input/Select.tsx";
 import { Modal, useModal } from "../../src/Components/Modal"
 import logo from  "./logo.svg";
-import {SelectValue} from "../../src";
-import {DropDown} from "../../src/Components/DropDown";
-import {DropDownSeparator} from "../../src/Components/DropDown/DropDown.tsx";
+import {SelectValue, useToast} from "../../src";
+import {DropDown, DropDownSeparator} from "../../src/Components/DropDown";
 import Badge from "../../src/Components/Badge/Badge.tsx";
 import BadgePrimary from "../../src/Components/Badge/BadgePrimary.tsx";
 import BadgeSecondary from "../../src/Components/Badge/BadgeSecondary.tsx";
@@ -55,6 +54,7 @@ export default function App() {
 	const [select, setSelect] = useState<SelectValue>();
 	const [emptySelect, setEmptySelect] = useState<SelectValue>();
 	const modal = useModal();
+	const toaster = useToast();
 	return (
 		<div className={"w-screen h-screen overflow-hidden overflow-y-auto bg-background text-text flex flex-col"}>
 			<Header
@@ -147,6 +147,16 @@ export default function App() {
 						<BadgeSecondary/>
 						<BadgeCancel/>
 						<BadgeDanger/>
+					</Card>
+					<Card title={"Toast"} className={"flex gap-4"}>
+						<ButtonPrimary onClick={() => {
+							toaster.addToast({
+								message: "Toast",
+								closable: true,
+							})
+						}}>
+							Toast
+						</ButtonPrimary>
 					</Card>
 				</div>
 			</div>

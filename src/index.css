@@ -112,4 +112,9 @@
 	/* DropDown */
 	--color-dropdown-bg: var(--color-zinc-900);
 	--color-dropdown-border: --alpha(var(--color-amber-100) / 0.25);
+
+	/* Toast */
+	--color-toast: var(--color-zinc-900);
+	--color-toast-border: --alpha(var(--color-amber-100) / 0.35);
+	--color-toast-undefined: var(--color-gray-400)
 }
