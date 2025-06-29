@@ -13,7 +13,7 @@ interface ModalProps {
 
 export default function Modal(props: ModalProps) {
 	return (
-		<div className={clsx("wb:fixed wb:top-0 wb:left-0 wb:h-screen wb:w-screen wb:bg-modal-screen wb:flex wb:justify-center wb:items-center wb:z-20", props.display || "wb:hidden")} onClick={e => {
+		<div className={clsx("fixed top-0 left-0 h-screen w-screen bg-modal-screen flex justify-center items-center z-20", props.display || "hidden")} onClick={e => {
 			if(e.currentTarget === e.target) {
 				props.setDisplay(false)
 			}
@@ -21,10 +21,10 @@ export default function Modal(props: ModalProps) {
 			<Card title={
 				<>
 					{props.title}
-					<div className={"wb:grow"}/>
-					<FiX className={"wb:text-2xl wb:cursor-pointer"} onClick={() => props.setDisplay(false)}/>
+					<div className={"grow"}/>
+					<FiX className={"text-2xl cursor-pointer"} onClick={() => props.setDisplay(false)}/>
 				</>
-			} containerClassName={"wb:w-4/5"}>
+			} containerClassName={"w-4/5"}>
 				{props.children}
 			</Card>
 		</div>

@@ -3,6 +3,6 @@ import {Badge} from "./index";
 
 export default function BadgeDanger() {
 	return (
-		<Badge bgColor={"wb:bg-danger"} pulseColor={"wb:bg-danger/50"}/>
+		<Badge bgColor={"bg-danger"} pulseColor={"bg-danger/50"}/>
 	)
 }

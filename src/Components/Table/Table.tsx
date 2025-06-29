@@ -30,9 +30,9 @@ export default function Table<T extends StringIndexedObject>(props: TableProps<T
 		return size.map(v => typeof v === "number" ? v + "px" : v ?? "1fr");
 	}, [props.header]);
 	return (
-		<div className={"wb:border wb:border-table-border wb:rounded-md wb:overflow-hidden"}>
-			<div className={"wb:grid wb:overflow-x-auto"} style={{gridTemplateColumns: size.join(" ")}}>
-				<div className={"wb:contents"}>
+		<div className={"border border-table-border rounded-md overflow-hidden"}>
+			<div className={"grid overflow-x-auto"} style={{gridTemplateColumns: size.join(" ")}}>
+				<div className={"contents"}>
 					{props.header.map((header, index) => {
 						const sortOrder = header.sortable !== false ? props.sort?.find(v => v.id === header.id)?.order ?? SortOrder.None : SortOrder.None;
 						const setSort = props.setSort && ((sort: SortOrder) => {
@@ -50,9 +50,9 @@ export default function Table<T extends StringIndexedObject>(props: TableProps<T
 						return <HeaderCell key={index} sortable={header.sortable ?? true} sort={sortOrder} setSort={setSort}>{header.name ?? header.id}</HeaderCell>
 					})}
 				</div>
-				{props.error !== undefined && <div className={"wb:col-span-full wb:h-24 wb:flex wb:items-center wb:justify-center"}>{props.error}</div> || props.loading && (props.loadingElement ?? <DefaultLoading/>) || props.data.map((row, index) => {
+				{props.error !== undefined && <div className={"col-span-full h-24 flex items-center justify-center"}>{props.error}</div> || props.loading && (props.loadingElement ?? <DefaultLoading/>) || props.data.map((row, index) => {
 					return (
-						<div className={"wb:contents wb:group"} key={index}>
+						<div className={"contents group"} key={index}>
 							{props.header.map((header, index) => <Cell key={index} className={header.columnClassName}>
 								{header.render !== undefined && header.render(row) || deepDotAccess(row, header.id) }
 							</Cell>)}

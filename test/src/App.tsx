@@ -56,27 +56,27 @@ export default function App() {
 	const [emptySelect, setEmptySelect] = useState<SelectValue>();
 	const modal = useModal();
 	return (
-		<div className={"wb:w-screen wb:h-screen wb:overflow-hidden wb:overflow-y-auto wb:bg-background wb:text-text wb:flex wb:flex-col"}>
+		<div className={"w-screen h-screen overflow-hidden overflow-y-auto bg-background text-text flex flex-col"}>
 			<Header
-				title={<><img alt={"Logo"} src={logo}/><p className={"wb:hidden wb:xs:block wb:text-amber-200"}>IMacaron - Web Basic</p></>}
+				title={<><img alt={"Logo"} src={logo}/><p className={"hidden xs:block text-amber-200"}>IMacaron - Web Basic</p></>}
 				displayMenu={menu.setDisplay}
 			>
-				<a href={"https://www.npmjs.com/package/imacaron-basic"} target={"_blank"} className={"wb:hover:scale-105 wb:text-2xl"}>
+				<a href={"https://www.npmjs.com/package/imacaron-basic"} target={"_blank"} className={"hover:scale-105 text-2xl"}>
 					<SiNpm/>
 				</a>
-				<a href={"https://github.com/MacaronFR/web-basic"} target={"_blank"} className={"wb:hover:scale-105 wb:text-2xl"}>
+				<a href={"https://github.com/MacaronFR/web-basic"} target={"_blank"} className={"hover:scale-105 text-2xl"}>
 					<FiGithub/>
 				</a>
 			</Header>
-			<div className={"wb:flex wb:grow"}>
+			<div className={"flex grow"}>
 				<SideBar isVisible={menu.display} setVisible={menu.setDisplay}>
 					<SideBarItem active>Main</SideBarItem>
 					<SideBarItem onClick={() => modal.setDisplay(true)}>Modal</SideBarItem>
 				</SideBar>
-				<div className={"wb:px-2 wb:flex wb:flex-col wb:gap-2 wb:grow wb:mt-2 wb:max-w-full"}>
+				<div className={"px-2 flex flex-col gap-2 grow mt-2 max-w-full"}>
 					<Table {...table}/>
-					<Card className={"wb:flex wb:flex-col wb:xs:flex-row wb:gap-4 wb:flex-wrap"} title={"Buttons"}>
-						<div className={"wb:flex wb:flex-col wb:items-center wb:gap-2"}>
+					<Card className={"flex flex-col xs:flex-row gap-4 flex-wrap"} title={"Buttons"}>
+						<div className={"flex flex-col items-center gap-2"}>
 							<ButtonPrimary>
 								Primary
 							</ButtonPrimary>
@@ -84,7 +84,7 @@ export default function App() {
 								Primary
 							</ButtonPrimary>
 						</div>
-						<div className={"wb:flex wb:flex-col wb:items-center wb:gap-2"}>
+						<div className={"flex flex-col items-center gap-2"}>
 							<ButtonSecondary>
 								Secondary
 							</ButtonSecondary>
@@ -92,7 +92,7 @@ export default function App() {
 								Secondary
 							</ButtonSecondary>
 						</div>
-						<div className={"wb:flex wb:flex-col wb:items-center wb:gap-2"}>
+						<div className={"flex flex-col items-center gap-2"}>
 							<ButtonCancel>
 								Cancel
 							</ButtonCancel>
@@ -100,7 +100,7 @@ export default function App() {
 								Cancel
 							</ButtonCancel>
 						</div>
-						<div className={"wb:flex wb:flex-col wb:items-center wb:gap-2"}>
+						<div className={"flex flex-col items-center gap-2"}>
 							<ButtonDanger>
 								Danger
 							</ButtonDanger>
@@ -109,23 +109,23 @@ export default function App() {
 							</ButtonDanger>
 						</div>
 					</Card>
-					<Card className={"wb:flex wb:flex-col wb:gap-2"} title={"Inputs"}>
-						<div className={"wb:flex wb:flex-col wb:xs:flex-row wb:gap-2 wb:items-center"}>
+					<Card className={"flex flex-col gap-2"} title={"Inputs"}>
+						<div className={"flex flex-col xs:flex-row gap-2 items-center"}>
 							<Input label={"Input with label"} value={value} onChange={setValue}/>
 							<Input value={value} onChange={setValue}/>
 							<Input label={"Input disabled"} value={value} onChange={setValue} disabled/>
 						</div>
-						<div className={"wb:flex wb:flex-col wb:xs:flex-row wb:gap-2 wb:items-center"}>
-							<div className={"wb:flex wb:gap-2"}>Checkbox<CheckBox checked={checked} onChange={setChecked}/></div>
-							<div className={"wb:flex wb:gap-2"}>Checkbox disabled<CheckBox checked={checked} onChange={setChecked} disabled/></div>
+						<div className={"flex flex-col xs:flex-row gap-2 items-center"}>
+							<div className={"flex gap-2"}>Checkbox<CheckBox checked={checked} onChange={setChecked}/></div>
+							<div className={"flex gap-2"}>Checkbox disabled<CheckBox checked={checked} onChange={setChecked} disabled/></div>
 						</div>
-						<div className={"wb:flex wb:flex-col wb:xs:flex-row wb:gap-2 wb:items-center"}>
+						<div className={"flex flex-col xs:flex-row gap-2 items-center"}>
 							<Select options={[{label: "Test", value: "Bonjour", disabled: true}, {label: "Test2", value: "Hello", disabled: false}, {label: "Test3", value: "Guten Tag"}, {label: "Test4", value: "Hola"}]} value={select} setValue={setSelect} defaultValue={"Bonjour"}/>
 							<Select options={[{label: "Test", value: "Bonjour", disabled: true}, {label: "Test2", value: "Hello", disabled: false}, {label: "Test3", value: "Guten Tag"}, {label: "Test4", value: "Hola"}]} value={select} setValue={setSelect} defaultValue={"Bonjour"} disabled={true}/>
 							<Select options={[{label: "Test", value: "Bonjour", disabled: true}, {label: "Test2", value: "Hello", disabled: false}, {label: "Test3", value: "Guten Tag"}, {label: "Test4", value: "Hola"}]} value={emptySelect} setValue={setEmptySelect} label={"Empty select"}/>
 						</div>
 					</Card>
-					<Card className={"wb:flex wb:gap-2"} title={"DropDown"}>
+					<Card className={"flex gap-2"} title={"DropDown"}>
 						<DropDown title={"DropDown"} align={"left"}>
 							Element 1
 							<DropDownSeparator/>
@@ -141,7 +141,7 @@ export default function App() {
 							Very long element 3
 						</DropDown>
 					</Card>
-					<Card title={"Badge"} className={"wb:flex wb:gap-4"}>
+					<Card title={"Badge"} className={"flex gap-4"}>
 						<Badge/>
 						<BadgePrimary/>
 						<BadgeSecondary/>

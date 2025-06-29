@@ -22,12 +22,12 @@ export default function DropDown(props: DropDownProps) {
 		return () => document.removeEventListener("click", onOutsideClick);
 	}, [])
 	return (
-		<div className={"wb:relative"} ref={container}>
-			<div onClick={() => setDisplay(prev => !prev)} className={"wb:flex wb:items-center wb:gap-2 wb:cursor-pointer wb:border wb:rounded-md wb:border-dropdown-border wb:bg-dropdown-bg wb:p-1"}>
+		<div className={"relative"} ref={container}>
+			<div onClick={() => setDisplay(prev => !prev)} className={"flex items-center gap-2 cursor-pointer border rounded-md border-dropdown-border bg-dropdown-bg p-1"}>
 				<p>{props.title}</p>
-				<FiChevronDown className={clsx(display && "wb:rotate-180")}/>
+				<FiChevronDown className={clsx(display && "rotate-180")}/>
 			</div>
-			<div className={clsx("wb:absolute wb:bg-dropdown-bg wb:border wb:border-dropdown-border wb:rounded-md wb:top-full wb:mt-1 wb:min-w-full wb:p-1", display || "wb:hidden", props.align === "right" && "wb:right-0", props.align === "left" && "wb:left-0")}>
+			<div className={clsx("absolute bg-dropdown-bg border border-dropdown-border rounded-md top-full mt-1 min-w-full p-1", display || "hidden", props.align === "right" && "right-0", props.align === "left" && "left-0")}>
 				{props.children}
 			</div>
 		</div>
@@ -36,6 +36,6 @@ export default function DropDown(props: DropDownProps) {
 
 export function DropDownSeparator() {
 	return (
-		<div className={"wb:border-b wb:border-dropdown-border wb:my-1 wb:px-2"}/>
+		<div className={"border-b border-dropdown-border my-1 px-2"}/>
 	)
 }

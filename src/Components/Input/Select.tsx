@@ -70,7 +70,7 @@ export default function Select(props: SelectProps) {
 	return (
 		<div
 			ref={container}
-			className={"wb:relative wb:group wb:focus:outline-none wb:w-48 wb:mt-2"}
+			className={"relative group focus:outline-none w-48 mt-2"}
 			onClick={() => props.disabled !== true && setClick(true)}
 			onFocus={() => props.disabled !== true && setFocus(true)}
 			onBlur={() => props.disabled !== true && setFocus(false)}
@@ -104,23 +104,23 @@ export default function Select(props: SelectProps) {
 			}}
 			tabIndex={props.disabled === true ? -1 : 0}
 		>
-			<select disabled={props.disabled} className={"wb:hidden wb:peer"} value={props.value} onChange={e => props.setValue(e.target.value)}>
+			<select disabled={props.disabled} className={"hidden peer"} value={props.value} onChange={e => props.setValue(e.target.value)}>
 				{props.options.map((option, i) =>
 					<option key={i} value={option.value} disabled={option.disabled}>{option.label}</option>
 				)}
 			</select>
 			<div
-				className={clsx("wb:border wb:border-input-border wb:bg-input wb:px-2 wb:py-0.5 wb:min-h-7 wb:rounded-md wb:flex wb:justify-between wb:items-center wb:min-w-48 wb:cursor-pointer wb:group-focus:outline wb:group-focus:outline-input-focus wb:peer-disabled:border-input-border-wb:disabled wb:peer-disabled:text-input-text-disabled wb:peer-disabled:outline-none wb:peer-disabled:cursor-default", open && "wb:rounded-b-none")}
+				className={clsx("border border-input-border bg-input px-2 py-0.5 min-h-7 rounded-md flex justify-between items-center min-w-48 cursor-pointer group-focus:outline group-focus:outline-input-focus peer-disabled:border-input-border-disabled peer-disabled:text-input-text-disabled peer-disabled:outline-none peer-disabled:cursor-default", open && "rounded-b-none")}
 			>
 				<span>{props.options.find(v => v.value === props.value)?.label}</span>
-				{props.label && <span className={clsx("wb:absolute wb:text-input-label wb:bg-input wb:px-1 wb:rounded-sm", props.value !== undefined && "wb:-translate-y-8/10 wb:text-sm")}>{props.label}</span> }
+				{props.label && <span className={clsx("absolute text-input-label bg-input px-1 rounded-sm", props.value !== undefined && "-translate-y-8/10 text-sm")}>{props.label}</span> }
 				<FiChevronDown className={clsx("transition", open && "rotate-x-180")}/>
 			</div>
-			{ open && <div ref={optionsContainer} className={"wb:absolute wb:top-full wb:left-0 wb:w-full wb:bg-input wb:border wb:border-t-transparent wb:rounded-b-md wb:border-input-border wb:overflow-y-auto wb:z-20"} style={{maxHeight: maxLines * lineSize}} tabIndex={-1}>
+			{ open && <div ref={optionsContainer} className={"absolute top-full left-0 w-full bg-input border border-t-transparent rounded-b-md border-input-border overflow-y-auto z-20"} style={{maxHeight: maxLines * lineSize}} tabIndex={-1}>
 				{ props.options.map((option, i) =>
 					<div
 						key={i}
-						className={clsx("wb:px-2 wb:py-1 wb:hover:bg-input-select-options-hover wb:cursor-pointer wb:last:rounded-b-md", props.value === option.value && "wb:bg-input-selected", currentIndex === i && "wb:!bg-input-select-options-hover", option.disabled === true && "wb:cursor-not-allowed wb:text-input-text-disabled")}
+						className={clsx("px-2 py-1 hover:bg-input-select-options-hover cursor-pointer last:rounded-b-md", props.value === option.value && "bg-input-selected", currentIndex === i && "!bg-input-select-options-hover", option.disabled === true && "cursor-not-allowed text-input-text-disabled")}
 						onClick={() => {
 							if(option.disabled !== true){
 								props.setValue(option.value)

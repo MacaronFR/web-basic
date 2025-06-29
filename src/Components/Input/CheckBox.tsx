@@ -15,7 +15,7 @@ export default function CheckBox(props: CheckBoxProps) {
 	return (
 		<label
 			htmlFor={id}
-			className={"wb:block wb:bg-input wb:aspect-square wb:w-5 wb:rounded-md wb:border wb:border-input-border wb:has-disabled:border-input-border-disabled wb:overflow-hidden wb:cursor-pointer wb:select-none wb:has-disabled:cursor-default wb:focus:outline wb:focus:outline-input-focus"}
+			className={"block bg-input aspect-square w-5 rounded-md border border-input-border has-disabled:border-input-border-disabled overflow-hidden cursor-pointer select-none has-disabled:cursor-default focus:outline focus:outline-input-focus"}
 			tabIndex={props.disabled === true ? -1 : 0}
 			onFocus={() => setFocus(true)}
 			onBlur={() => setFocus(false)}
@@ -25,8 +25,8 @@ export default function CheckBox(props: CheckBoxProps) {
 				}
 			}}
 		>
-			<input type={"checkbox"} className={"wb:hidden wb:peer"} id={id} disabled={props.disabled} checked={props.checked} onChange={e => props.onChange(e.target.checked)}/>
-			<div className={"wb:w-full wb:h-full wb:rounded-md wb:opacity-0 wb:bg-input-selected wb:text-input-text wb:peer-disabled:text-input-text-disabled wb:flex wb:items-center wb:justify-center wb:transition-transform wb:duration-500 wb:rotate-0 wb:peer-checked:opacity-100 wb:peer-checked:rotate-[360deg]"}><FiCheck/></div>
+			<input type={"checkbox"} className={"hidden peer"} id={id} disabled={props.disabled} checked={props.checked} onChange={e => props.onChange(e.target.checked)}/>
+			<div className={"w-full h-full rounded-md opacity-0 bg-input-selected text-input-text peer-disabled:text-input-text-disabled flex items-center justify-center transition-transform duration-500 rotate-0 peer-checked:opacity-100 peer-checked:rotate-[360deg]"}><FiCheck/></div>
 		</label>
 	)
 }
