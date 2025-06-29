@@ -1,6 +1,6 @@
 import {FiCheck} from "react-icons/fi";
 import {SetState} from "../../index";
-import React, {useEffect} from "react";
+import React from "react";
 
 interface CheckBoxProps {
 	id?: string,

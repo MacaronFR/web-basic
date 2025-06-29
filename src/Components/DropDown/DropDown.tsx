@@ -1,5 +1,4 @@
 import React, {useEffect, useRef, useState} from "react";
-import {ButtonPrimary} from "../Button";
 import {clsx} from "clsx";
 import {FiChevronDown} from "react-icons/fi";
 
