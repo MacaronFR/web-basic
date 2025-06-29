@@ -22,7 +22,7 @@ export default function DropDown(props: DropDownProps) {
 		return () => document.removeEventListener("click", onOutsideClick);
 	}, [])
 	return (
-		<div className={"relative"} ref={container}>
+		<div className={"relative z-10"} ref={container}>
 			<div onClick={() => setDisplay(prev => !prev)} className={"flex items-center gap-2 cursor-pointer border rounded-md border-dropdown-border bg-dropdown-bg p-1"}>
 				<p>{props.title}</p>
 				<FiChevronDown className={clsx(display && "rotate-180")}/>
