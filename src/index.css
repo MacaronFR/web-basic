@@ -12,6 +12,7 @@
 		scrollbar-color: var(--color-scrollbar-thumb) transparent;
 	}
 
+	/* Toast animation classes */
 	@keyframes toast-in {
 		0% {
 			transform: translateX(110%);
@@ -27,6 +28,34 @@
 
 	.toast-out {
 		animation: toast-in 150ms ease-in-out reverse;
+	}
+
+	/* Filters css */
+	.range-input {
+		cursor: grab;
+		&:active {
+			cursor: grabbing;
+		}
+
+		&::-ms-track {
+			appearance: none;
+		}
+		&::-moz-range-track {
+			appearance: none;
+		}
+		&:focus::-webkit-slider-runnable-track {
+			appearance: none;
+		}
+
+		&::-ms-thumb {
+			pointer-events: all;
+		}
+		&::-webkit-slider-thumb {
+			pointer-events: all;
+		}
+		&::-moz-range-thumb {
+			pointer-events: all;
+		}
 	}
 }
 
