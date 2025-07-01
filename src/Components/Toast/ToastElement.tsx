@@ -1,6 +1,5 @@
 import React, {ReactNode, useCallback, useEffect, useState} from "react";
 import {clsx} from "clsx";
-import "./Toast.css";
 import {FiX} from "react-icons/fi";
 
 interface ToastProps {

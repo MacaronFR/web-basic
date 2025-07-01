@@ -11,6 +11,23 @@
 		scrollbar-width: thin;
 		scrollbar-color: var(--color-scrollbar-thumb) transparent;
 	}
+
+	@keyframes toast-in {
+		0% {
+			transform: translateX(110%);
+		}
+		100% {
+			transform: translateX(0);
+		}
+	}
+
+	.toast-in {
+		animation: toast-in 150ms ease-in-out;
+	}
+
+	.toast-out {
+		animation: toast-in 150ms ease-in-out reverse;
+	}
 }
 
 @theme {
