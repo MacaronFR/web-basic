@@ -1,12 +1,13 @@
-import { FilterForm } from "./FilterForm";
+import {FilterForm} from "./FilterForm";
 import {FilterType} from "./FilterType";
 import {Option} from "../Input";
 import RangeValue, {OptionalRangeValue} from "./RangeValue";
 import {SelectValue, SetState} from "../../utils";
 import FilterNumber, {FilterMinMax, FilterRange, FilterSlider} from "./FilterNumber";
 import FilterBoolean from "./FilterBoolean";
-import FilterEnum from "./FilterEnum";
+import FilterSelect, {FilterCheckbox, FilterMultiSelect, FilterRadio} from "./FilterEnum";
 import React from "react";
+import FilterString from "./FilterString";
 
 export interface FilterProps {
 	label: string,
@@ -17,8 +18,8 @@ export interface FilterProps {
 	max?: number,
 	step?: number,
 	options?: Option[],
-	value: string | number | boolean | RangeValue | OptionalRangeValue | SelectValue,
-	setValue: SetState<string> | SetState<number> | SetState<boolean> | SetState<RangeValue> | SetState<OptionalRangeValue> | SetState<SelectValue>
+	value: string | number | boolean | RangeValue | OptionalRangeValue | SelectValue | SelectValue[],
+	setValue: SetState<string> | SetState<number> | SetState<boolean> | SetState<RangeValue> | SetState<OptionalRangeValue> | SetState<SelectValue> | SetState<SelectValue[]>
 }
 
 export default function Filter(props: FilterProps) {
@@ -34,14 +35,22 @@ export default function Filter(props: FilterProps) {
 			comp = <FilterNumber {...props}/>;
 		}
 	} else if(props.type === FilterType.STRING) {
-
+		comp = <FilterString {...props}/>;
 	} else if(props.type === FilterType.BOOLEAN) {
 		comp = <FilterBoolean {...props}/>;
 	} else if(props.type === FilterType.ENUM) {
-		comp = <FilterEnum {...props}/>;
+		if(props.form === FilterForm.SELECT) {
+			comp = <FilterSelect {...props}/>;
+		} else if(props.form === FilterForm.RADIO) {
+			comp = <FilterRadio {...props}/>;
+		} else if(props.form === FilterForm.CHECKBOX) {
+			comp = <FilterCheckbox {...props}/>;
+		} else if(props.form === FilterForm.MULTI_SELECT) {
+			comp = <FilterMultiSelect {...props}/>;
+		}
 	}
-	return <div>
-		<h3>{props.label}</h3>
+	return <div className={"mb-2"}>
+		<h3 className={"text-lg"}>{props.label}</h3>
 		{comp}
 	</div>
 }

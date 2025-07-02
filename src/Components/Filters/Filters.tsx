@@ -9,7 +9,7 @@ interface FiltersProps {
 
 export default function Filters(props: FiltersProps) {
 	return (
-		<Card>
+		<Card className={"overflow-y-auto"}>
 			{props.filters.map((f, i) => {
 				return (
 					<Filter {...f} key={i}/>

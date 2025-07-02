@@ -30,7 +30,7 @@ export default function Table<T extends StringIndexedObject>(props: TableProps<T
 		return size.map(v => typeof v === "number" ? v + "px" : v ?? "1fr");
 	}, [props.header]);
 	return (
-		<div className={"border border-table-border rounded-md overflow-hidden grow"}>
+		<div className={"border border-table-border rounded-md overflow-hidden grow self-start"}>
 			<div className={"grid overflow-x-auto"} style={{gridTemplateColumns: size.join(" ")}}>
 				<div className={"contents"}>
 					{props.header.map((header, index) => {

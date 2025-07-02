@@ -14,9 +14,7 @@ export default function FilterNumber(props: FilterProps) {
 		}
 	}, [value]);
 	return (
-		<div>
-			<Input type={"number"} value={value} onChange={setValue}/>
-		</div>
+		<Input type={"number"} value={value} onChange={setValue} label={props.label}/>
 	)
 }
 
@@ -29,7 +27,7 @@ export function FilterSlider(props: FilterProps) {
 		return (value - min) / (max - min) * 100;
 	}, [props.min, props.max, value]);
 	return (
-		<div className={"relative mx-2 h-7"}>
+		<div className={"relative mx-2 h-7 mt-1"}>
 			<div className={"absolute w-full h-2"}>
 				<input type={"range"} className={"absolute w-full m-0 p-0 border-0 range-input z-20 opacity-0"} min={props.min ?? 0} max={props.max ?? 100} value={value} onChange={(e) => {
 					setValue(parseFloat(e.target.value));
@@ -70,8 +68,8 @@ export function FilterMinMax(props: FilterProps) {
 	}, [maxText, setValue]);
 	return (
 		<div className={"flex gap-2"}>
-			<Input value={minText} onChange={setMinText} label={"Min"}/>
-			<Input value={maxText} onChange={setMaxText} label={"Max"}/>
+			<Input widthClass={"w-22"} value={minText} onChange={setMinText} label={"Min"}/>
+			<Input widthClass={"w-22"} value={maxText} onChange={setMaxText} label={"Max"}/>
 		</div>
 	);
 }
@@ -101,7 +99,7 @@ export function FilterRange(props: FilterProps) {
 		setValue({min, max});
 	}, [min, max, setValue]);
 	return (
-		<div className={"relative mx-2 h-7"}>
+		<div className={"relative mx-2 h-7 mt-1"}>
 			<div className={"absolute w-full h-2"}>
 				<input className={"absolute w-full pointer-events-none appearance-none h-full opacity-0 z-20 p-0 range-input"} type={"range"} value={min} onChange={onMinChange} min={props.min ?? 0} max={props.max ?? 100} step={step}/>
 				<input className={"absolute w-full pointer-events-none appearance-none h-full opacity-0 z-20 p-0 range-input"} type={"range"} value={max} onChange={onMaxChange} min={props.min ?? 0} max={props.max ?? 100} step={step}/>

@@ -15,14 +15,15 @@ import Input from "../../src/Components/Input/Input.tsx";
 import {useState} from "react";
 import CheckBox from "../../src/Components/Input/CheckBox.tsx";
 import Select from "../../src/Components/Input/Select.tsx";
-import { Modal, useModal } from "../../src/Components/Modal"
-import logo from  "./logo.svg";
-import {SelectValue, useToast} from "../../src";
+import {Modal, useModal} from "../../src/Components/Modal"
+import logo from "./logo.svg";
+import {Filters, FilterType, SelectValue, useToast} from "../../src";
 import {DropDown, DropDownSeparator} from "../../src/Components/DropDown";
 import Badge from "../../src/Components/Badge/Badge.tsx";
 import BadgePrimary from "../../src/Components/Badge/BadgePrimary.tsx";
 import BadgeSecondary from "../../src/Components/Badge/BadgeSecondary.tsx";
 import {BadgeCancel, BadgeDanger} from "../../src/Components/Badge";
+import FilterDemo from "./FilterDemo.tsx";
 
 export default function App() {
 	const table = useTable(
@@ -74,7 +75,10 @@ export default function App() {
 					<SideBarItem onClick={() => modal.setDisplay(true)}>Modal</SideBarItem>
 				</SideBar>
 				<div className={"px-2 flex flex-col gap-2 grow mt-2 max-w-full"}>
-					<Table {...table}/>
+					<div className={"flex gap-2 h-full"}>
+						<FilterDemo/>
+						<Table {...table}/>
+					</div>
 					<Card className={"flex flex-col xs:flex-row gap-4 flex-wrap"} title={"Buttons"}>
 						<div className={"flex flex-col items-center gap-2"}>
 							<ButtonPrimary>

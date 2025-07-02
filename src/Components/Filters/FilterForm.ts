@@ -3,6 +3,7 @@ export enum FilterForm {
 	SLIDER,
 	MIN_MAX,
 	SELECT,
+	MULTI_SELECT,
 	CHECKBOX,
 	RADIO
 }

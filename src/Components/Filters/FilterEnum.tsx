@@ -1,14 +1,65 @@
 import {FilterProps} from "./Filter";
 import {SelectValue, SetState} from "../../utils";
-import {Select} from "../Input";
-import React from "react";
+import {CheckBox, Select} from "../Input";
+import React, {useCallback} from "react";
 
-export default function FilterEnum(props: FilterProps) {
+export default function FilterSelect(props: FilterProps) {
 	const value = props.value as SelectValue;
 	const setValue = props.setValue as SetState<SelectValue>;
 	return (
-		<div className={"mt-1"}>
-			<Select options={props.options ?? []} value={value} setValue={setValue}/>
+		<div>
+			<Select options={props.options ?? []} value={value} setValue={setValue} label={props.label}/>
+		</div>
+	)
+}
+
+export function FilterRadio(props: FilterProps) {
+	const value = props.value as SelectValue;
+	const setValue = props.setValue as SetState<SelectValue>;
+	return (
+		<div>
+			{props.options?.map((option, index) => (
+				<div className={"flex gap-1"}>
+					<input id={props.id + index} type={"radio"} key={index} value={option.value} checked={value === option.value} onChange={() => setValue(option.value)}/>
+					<label htmlFor={props.id + index}>{option.label}</label>
+				</div>
+			))}
+		</div>
+	)
+}
+
+export function FilterCheckbox(props: FilterProps) {
+	const value = props.value as SelectValue[];
+	const setValue = props.setValue as SetState<SelectValue[]>;
+	const onChange = useCallback((v: SelectValue) => {
+		return (checked: boolean | ((prev: boolean) => boolean)) => {
+			if(typeof checked === "function") {
+				checked = checked(value.includes(v));
+			}
+			if(checked) {
+				setValue(prev => [...prev, v]);
+			} else {
+				setValue(prev => prev.filter(v1 => v1 !== v));
+			}
+		}
+	}, [setValue]);
+	console.log(value);
+	return (
+		<div className={"flex flex-col gap-1"}>
+			{props.options?.map((option, index) => (
+				<div className={"flex gap-1"}>
+					<CheckBox checked={value.includes(option.value)} onChange={onChange(option.value)} id={props.id + index}/>
+					<label htmlFor={props.id + index}>{option.label}</label>
+				</div>
+			))}
+		</div>
+	)
+}
+
+export function FilterMultiSelect(props: FilterProps) {
+	return (
+		<div>
+			Coming soon
 		</div>
 	)
 }
