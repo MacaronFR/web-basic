@@ -57,6 +57,7 @@ export function FilterCheckbox(props: FilterProps) {
 }
 
 export function FilterMultiSelect(props: FilterProps) {
+	props.value
 	return (
 		<div>
 			Coming soon
