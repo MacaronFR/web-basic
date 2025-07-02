@@ -17,7 +17,7 @@ import CheckBox from "../../src/Components/Input/CheckBox.tsx";
 import Select from "../../src/Components/Input/Select.tsx";
 import {Modal, useModal} from "../../src/Components/Modal"
 import logo from "./logo.svg";
-import {Filters, FilterType, SelectValue, useToast} from "../../src";
+import {SelectValue, useToast} from "../../src";
 import {DropDown, DropDownSeparator} from "../../src/Components/DropDown";
 import Badge from "../../src/Components/Badge/Badge.tsx";
 import BadgePrimary from "../../src/Components/Badge/BadgePrimary.tsx";
