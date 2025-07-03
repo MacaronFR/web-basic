@@ -53,19 +53,19 @@ export function FilterMinMax(props: FilterProps) {
 	useEffect(() => {
 		const newMin = parseFloat(minText);
 		if(!isNaN(newMin)) {
-			setValue(v => ({...v, min: newMin}));
+			setValue(v => ({...v, min: Math.max(newMin, props.min ?? newMin)}))
 		} else {
 			setValue(v => ({...v, min: undefined}));
 		}
-	}, [minText, setValue]);
+	}, [minText, setValue, props.min]);
 	useEffect(() => {
 		const newMax = parseFloat(maxText);
 		if(!isNaN(newMax)) {
-			setValue(v => ({...v, max: newMax}));
+			setValue(v => ({...v, max: Math.min(newMax, props.max ?? newMax)}));
 		} else {
 			setValue(v => ({...v, max: undefined}));
 		}
-	}, [maxText, setValue]);
+	}, [maxText, setValue, props.max]);
 	return (
 		<div className={"flex gap-2"}>
 			<Input widthClass={"w-22"} value={minText} onChange={setMinText} label={"Min"}/>
