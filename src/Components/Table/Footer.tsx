@@ -65,7 +65,7 @@ export default function Footer(props: FooterProps) {
 							props.setPageSize(parseInt(e.target.value));
 						}
 					}}>
-						{props.pageSizeOptions.map(v => <option key={v} value={v}>{v}</option>)}
+						{props.pageSizeOptions.map(v => <option className={"bg-table-header"} key={v} value={v}>{v}</option>)}
 					</select>
 				}
 			</div>
