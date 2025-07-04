@@ -5,6 +5,12 @@ interface rawApiOptions extends apiOptions<string | FormData | URLSearchParams> 
 	contentType?: string,
 }
 
+interface APIError {
+	status: number,
+	statusText: string,
+	message: string,
+}
+
 export function useRawRequest() {
 	const config = useContext(APIContext);
 	return useCallback(async <T>(url: string, options?: rawApiOptions): Promise<T | undefined> => {
@@ -30,25 +36,26 @@ export function useRawRequest() {
 				return undefined;
 			}
 		}
+		let res: Response;
 		try {
-			const res = await fetch(config.baseUrl + url, req);
-			if (res.status >= 200 && res.status < 300) {
-				if (res.status === 204) {
-					return undefined;
-				}
-				return res.json();
-			} else {
-				if (config.onError) {
-					config.onError(res);
-				}
-				return undefined
-			}
+			res = await fetch(config.baseUrl + url, req);
 		} catch (e) {
-			console.error(e);
-			if (config.onError) {
-				config.onError(e);
-			}
 			return undefined;
+		}
+		if (res.status >= 200 && res.status < 300) {
+			if (res.status === 204) {
+				return undefined;
+			}
+			return res.json();
+		} else {
+			if (config.onError) {
+				config.onError(res);
+			}
+			throw {
+				status: res.status,
+				statusText: res.statusText,
+				message: await res.text()
+			} as APIError
 		}
 	}, [config.onError, config.prepareRequest, config.baseUrl]);
 }
