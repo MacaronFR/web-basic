@@ -151,6 +151,7 @@
 	--color-input-border-disabled: --alpha(var(--color-amber-100) / 0.25);
 	--color-input-selected: var(--color-zinc-950);
 	--color-input-select-options-hover: var(--color-zinc-800);
+	--color-input-radio-checked: var(--color-amber-200);
 
 	/* Modal */
 	--color-modal-screen: --alpha(var(--color-black) / 40%);

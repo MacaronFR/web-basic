@@ -1,6 +1,6 @@
 import {FilterProps} from "./Filter";
 import {SelectValue, SetState} from "../../utils";
-import {CheckBox, Select} from "../Input";
+import {CheckBox, Radio, Select} from "../Input";
 import React, {useCallback} from "react";
 
 export default function FilterSelect(props: FilterProps) {
@@ -19,8 +19,8 @@ export function FilterRadio(props: FilterProps) {
 	return (
 		<div>
 			{props.options?.map((option, index) => (
-				<div className={"flex gap-1"}>
-					<input id={props.id + index} type={"radio"} key={index} value={option.value} checked={value === option.value} onChange={() => setValue(option.value)}/>
+				<div className={"flex gap-1 items-center"} key={index}>
+					<Radio id={props.id + index} value={option.value} checked={value === option.value} onChange={() => setValue(option.value)}/>
 					<label htmlFor={props.id + index}>{option.label}</label>
 				</div>
 			))}
