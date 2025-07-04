@@ -5,7 +5,7 @@ interface rawApiOptions extends apiOptions<string | FormData | URLSearchParams> 
 	contentType?: string,
 }
 
-interface APIError {
+export interface APIError {
 	status: number,
 	statusText: string,
 	message: string,
