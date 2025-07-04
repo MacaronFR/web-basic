@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 
 interface FooterProps {
 	page?: number,
@@ -10,6 +10,21 @@ interface FooterProps {
 }
 
 export default function Footer(props: FooterProps) {
+	const [pageText, setPageText] = useState(((props.page ?? 0) + 1).toString());
+
+	useEffect(() => {
+		const newPage = parseInt(pageText);
+		if(props.goToPage && !isNaN(newPage) && (props.maxPage === undefined || newPage <= props.maxPage) && newPage > 0) {
+			props.goToPage(newPage - 1);
+		}
+	}, [pageText, props.goToPage, props.maxPage]);
+
+	useEffect(() => {
+		if(props.page !== undefined) {
+			setPageText((props.page + 1).toString());
+		}
+	}, [props.page]);
+
 	if(props.page === undefined) {
 		return null;
 	}
@@ -29,7 +44,7 @@ export default function Footer(props: FooterProps) {
 						{"<"}
 					</button>
 				}
-				<p>{props.page + 1}{props.maxPage !== undefined && ` / ${props.maxPage}`}</p>
+				<p><input type={"text"} className={"w-4"} value={pageText} onChange={e => setPageText(e.target.value)}/>{props.maxPage !== undefined && ` / ${props.maxPage}`}</p>
 				{props.goToPage !== undefined &&
                     <button
                         disabled={props.maxPage !== undefined && props.page >= props.maxPage - 1}

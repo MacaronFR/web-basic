@@ -43,11 +43,10 @@ export function FilterCheckbox(props: FilterProps) {
 			}
 		}
 	}, [setValue]);
-	console.log(value);
 	return (
 		<div className={"flex flex-col gap-1"}>
 			{props.options?.map((option, index) => (
-				<div className={"flex gap-1"}>
+				<div className={"flex gap-1"} key={index}>
 					<CheckBox checked={value.includes(option.value)} onChange={onChange(option.value)} id={props.id + index}/>
 					<label htmlFor={props.id + index}>{option.label}</label>
 				</div>
