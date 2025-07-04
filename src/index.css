@@ -127,7 +127,7 @@
 	--color-sidebar-item-active: var(--color-gray-900);
 
 	/* Table */
-	--color-table-header: var( --color-neutral-800);
+	--color-table-header: var( --color-neutral-900);
 	--color-table-header-hover: var(--color-neutral-800);
 	--color-table-hover: var(--color-zinc-800);
 	--color-table-even: var(--color-zinc-900);

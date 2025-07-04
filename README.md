@@ -53,6 +53,28 @@ These colors are the base of the lib and are used across many components.
 
 ## Components
 
+## Header
+The Header component provides a simple header in which you can add a title and some children.
+Title will be placed on the left and children on the right.  
+It can also work with SideBar and display a menu button to display said sidebar on mobile.
+
+| part       | variable       | default   |
+|------------|----------------|-----------|
+| background | --color-header | #030712FF |
+
+# SideBar
+The sidebar component provides a responsive sidebar which will be hidden on mobile and work with he Header to be displayed.  
+You can use the `useSideBar` hook to have the needed state for managing it.
+
+| part            | variable                    | default   |
+|-----------------|-----------------------------|-----------|
+| background      | --color-sidebar             | #030712FF |
+| background-fade | --color-sidebar-fade        | #03071280 |
+| item:hover      | --color-sidebar-item-hover  | #101828FF |
+| item:active     | --color-sidebar-item-active | #101828FF |
+
+You can use `SideBarItem` component in `SideBar` children to quickly make a menu
+
 ### Table
 
 The table component is used to display data in a table. This component is pageable, sortable, and the page size is also customizable.  
@@ -62,8 +84,10 @@ The component has a default theme but can be set via CSS variables.
 |--------------|----------------------------|-----------|
 | header       | --color-table-header       | #171717FF |
 | header:hover | --color-table-header-hover | #262626FF |
-| row:even     | --color-table-even         | #27272AFF |
-| row:odd      | --color-table-odd          | #18181BFF |
+| row:hover    | --color-table-hover        | #27272AFF |
+| row:even     | --color-table-even         | #18181BFF |
+| row:odd      | --color-table-odd          | #09090BFF |
+| footer       | --color-table-footer       | #171717FF |
 | border       | --color-table-border       | #FEF3C640 |
 | loading      | --color-table-loading      | #FEF3C6FF |
 
@@ -92,7 +116,7 @@ The component has a default theme, but you can customize it
 
 | Part       | Variable            | Default   |
 |------------|---------------------|-----------|
-| Background | --color-card        | #27272AFF |
+| Background | --color-card        | #292524FF |
 | Border     | --color-card-border | #FEF3C640 |
 
 
