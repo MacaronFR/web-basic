@@ -46,7 +46,11 @@ export function useRawRequest() {
 			if (res.status === 204) {
 				return undefined;
 			}
-			return res.json();
+			try {
+				return res.json();
+			} catch (e) {
+				return undefined;
+			}
 		} else {
 			if (config.onError) {
 				config.onError(res);
