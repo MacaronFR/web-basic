@@ -46,11 +46,7 @@ export function useRawRequest() {
 			if (res.status === 204) {
 				return undefined;
 			}
-			try {
-				return res.json();
-			} catch (e) {
-				return undefined;
-			}
+			return res.json().catch(() => undefined) as Promise<T>;
 		} else {
 			if (config.onError) {
 				config.onError(res);

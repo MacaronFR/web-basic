@@ -4,6 +4,7 @@ import type RangeValue from "./RangeValue";
 import { type OptionalRangeValue } from "./RangeValue";
 import Filter from "./Filter";
 import Filters from "./Filters";
-import { useFilter, filterOperator, FilterValue } from "./useFilter";
+import { useFilter, filterOperator } from "./useFilter";
+import type { FilterValue } from "./useFilter";
 
 export { FilterType, FilterForm, RangeValue, OptionalRangeValue, Filter, Filters, useFilter, filterOperator, FilterValue };
