@@ -82,9 +82,9 @@ export function useRequest() {
 	}, [rawRequest]);
 }
 
-export default function useApi<R>(url: string, deps: any[], options?: apiOptions<object>): [R | undefined, boolean, string | undefined] {
+export default function useApi<R>(url: string, deps: any[], options?: apiOptions<object>): [R | undefined, boolean, APIError | undefined] {
 	const [data, setData] = useState<R>();
-	const [error, setError] = useState<string>();
+	const [error, setError] = useState<APIError>();
 	const [loading, setLoading] = useState(false);
 	const depsString = useMemo(() => {
 		return JSON.stringify(deps);
